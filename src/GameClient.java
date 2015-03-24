@@ -63,7 +63,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 		player.drawPlayer(g);
 		for(int i=0;i<mp.size();i++)
 		{
-			System.out.println("hi"+mp.get(i).getX()+" "+mp.size());
+			//System.out.println("hi"+mp.get(i).getX()+" "+mp.size());
 			mp.get(i).drawPlayer(g);
 			
 		}
@@ -81,12 +81,20 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 				// Get the next message
 				//System.out.println("blah");
 				Player newPlayer = (Player) din.readObject();
-				//System.out.println(message.getX());
+				//System.out.println(newPlayer.isSignedIn());
 				//if(!mp.contains(message)&&!message.getUserName().equals(player.getUserName()))
 				boolean add=true;
+				if(!newPlayer.getUserName().equals(player.getUserName()))
+				{
 				for(int i=0;i<mp.size();i++)
 				{
-					if(mp.get(i).getUserName().equals(newPlayer.getUserName()))
+					if(newPlayer.isSignedIn()==false&&mp.get(i).getUserName().equals(newPlayer.getUserName()))
+					{
+						mp.remove(i);
+						add=false;
+						System.out.println("signedout");
+					}
+					else if(mp.get(i).getUserName().equals(newPlayer.getUserName()))
 					{
 						add=false;
 						if(mp.get(i).getX()!=newPlayer.getX()||mp.get(i).getY()!=newPlayer.getY())
@@ -97,11 +105,13 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 						}
 							
 					}
+					
 				}
 				if(add==true)
 				{
 					mp.add(newPlayer);
 					sendInfo();
+				}
 				}
 				repaint();
 				
@@ -138,7 +148,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 			if(e.getKeyCode()==KeyEvent.VK_RIGHT) 
 			{
 				player.moveRight();
-				System.out.println(player.getX());
+				//System.out.println(player.getX());
 			}
 			else if(e.getKeyCode()==KeyEvent.VK_LEFT) 
 			{

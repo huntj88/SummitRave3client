@@ -11,10 +11,11 @@ public class Player implements Serializable{
 	private int x;
 	private int y;
 	private String userName;
-	private boolean signedIn=true;
+	private boolean signedIn;
 	
 	public Player(int x, int y, String userName)
 	{
+		signedIn=true;
 		this.x=x;
 		this.y=y;
 		this.userName=userName;
