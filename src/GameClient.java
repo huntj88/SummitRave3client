@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 
 public class GameClient extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener
 {
+	
+	
 
 	private Socket socket;
 	// The streams we communicate to the server; these come
@@ -101,14 +103,6 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 					mp.add(newPlayer);
 					sendInfo();
 				}
-				//System.out.println(message);
-				// Print it to our text window
-				//ta.append(message + "\n");
-				
-				/*Scanner scan = new Scanner(message);
-				String getuser=scan.next();
-				x=scan.nextInt();
-				scan.close();*/
 				repaint();
 				
 				try {

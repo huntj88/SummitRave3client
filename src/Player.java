@@ -11,6 +11,7 @@ public class Player implements Serializable{
 	private int x;
 	private int y;
 	private String userName;
+	private boolean signedIn=true;
 	
 	public Player(int x, int y, String userName)
 	{
@@ -23,6 +24,16 @@ public class Player implements Serializable{
 	{
 		g.fillRect(x, y, 10, 10);
 		g.drawString(userName,x, y-10);
+	}
+	
+	public void signOut()
+	{
+		signedIn=false;
+	}
+	
+	public boolean isSignedIn()
+	{
+		return signedIn;
 	}
 	
 	public String getUserName()
