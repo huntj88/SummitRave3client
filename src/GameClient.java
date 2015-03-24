@@ -47,6 +47,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 	addKeyListener(this);
 	addMouseListener(this);
 	addMouseMotionListener(this);
+	sendInfo();
 	}
 	
 	public void paintComponent(Graphics g)
@@ -72,29 +73,34 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 	@Override
 	public void run() {
 		try {
+			//sendInfo();
 			// Receive messages one-by-one, forever
 			while (true) {
 				// Get the next message
 				//System.out.println("blah");
-				Player message = (Player) din.readObject();
+				Player newPlayer = (Player) din.readObject();
 				//System.out.println(message.getX());
 				//if(!mp.contains(message)&&!message.getUserName().equals(player.getUserName()))
 				boolean add=true;
 				for(int i=0;i<mp.size();i++)
 				{
-					if(mp.get(i).getUserName().equals(message.getUserName()))
+					if(mp.get(i).getUserName().equals(newPlayer.getUserName()))
 					{
 						add=false;
-						if(mp.get(i).getX()!=message.getX()||mp.get(i).getY()!=message.getY())
+						if(mp.get(i).getX()!=newPlayer.getX()||mp.get(i).getY()!=newPlayer.getY())
 						{
 							mp.remove(i);
 							add=true;
+							
 						}
 							
 					}
 				}
 				if(add==true)
-					mp.add(message);
+				{
+					mp.add(newPlayer);
+					sendInfo();
+				}
 				//System.out.println(message);
 				// Print it to our text window
 				//ta.append(message + "\n");
