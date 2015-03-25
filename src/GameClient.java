@@ -73,7 +73,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	@Override
 	public void run() {
 		try {
-			// sendInfo();
+			sendInfo();
 			// Receive messages one-by-one, forever
 			while (true) {
 				// Get the next message

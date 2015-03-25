@@ -10,7 +10,7 @@ public class HealthElement extends GUIElement{
 	private Color c = Color.GREEN;
 	private int visibleHealth = width;
 	private int tempHealth = 0;
-	public final int DELAY = 3;
+	public final int DELAY = 2;
 	Timer timer;
 	
 	
@@ -38,7 +38,6 @@ public class HealthElement extends GUIElement{
 	public void setWidth()
 	{
 		width = Player.getHealth();
-		
 	}
 	
 	public void syncHealth()
