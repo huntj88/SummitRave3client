@@ -25,10 +25,11 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 	private ObjectInputStream din;
 	private Player player;
 	private ArrayList<Player> mp = new ArrayList<Player>();
+	private World world;
 	
 	public GameClient(String host,int port,String username)
 	{
-		player = new Player(200,200,username) ;
+		player = new Player(0,0,username) ;
 		try {
 			// Initiate the connection
 			socket = new Socket(host, port);
@@ -50,6 +51,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 	addMouseListener(this);
 	addMouseMotionListener(this);
 	GUI.makeGUIObjects(player);
+	world = new World(player.getX(),player.getY());
 	sendInfo();
 	}
 	
@@ -59,6 +61,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 0, 400, 400);
 		
+		world.drawWorld(player.getX(), player.getY(), g,mp);
 		GUI.drawEverything(g);
 		
 		g.setColor(Color.BLACK);
@@ -66,7 +69,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 		for(int i=0;i<mp.size();i++)
 		{
 			//System.out.println("hi"+mp.get(i).getX()+" "+mp.size());
-			mp.get(i).drawPlayer(g);	
+			//mp.get(i).drawPlayer(g);	
 		}
 		
 		

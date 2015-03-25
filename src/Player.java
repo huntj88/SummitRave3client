@@ -24,8 +24,17 @@ public class Player implements Serializable{
 	
 	public void drawPlayer(Graphics g)
 	{
-		g.fillRect(x, y, 10, 10);
-		g.drawString(userName,x, y-10);
+		/*g.fillRect(x, y, 10, 10);
+		g.drawString(userName,x, y-10);*/
+		g.fillRect(180, 180, 10, 10);
+		g.drawString(userName,180, 180-10);
+	}
+	
+	public void drawMPlayer(Graphics g, int pX, int pY)
+	{
+		g.fillRect(x-pX+180, y-pY+180, 10, 10);
+		System.out.println((pX-x)+" "+(pY-y));
+		//g.fillRect(120, 100, 16, 16);
 	}
 	
 	public void signOut()
