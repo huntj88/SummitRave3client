@@ -18,6 +18,5 @@ public abstract class GUIElement {
 		this.width=width;
 	}
 	
-	
 
 }

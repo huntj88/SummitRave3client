@@ -15,5 +15,4 @@ public class GUI {
 		h.draw(g);
 	}
 
-
 }

@@ -54,6 +54,16 @@ public class Player implements Serializable{
 		return health;
 	}
 	
+	public void Hit(int damage)
+	{
+		health-=damage;
+	}
+	
+	public void Heal()
+	{
+		health++;
+	}
+	
 	public void moveLeft()
 	{
 		x--;

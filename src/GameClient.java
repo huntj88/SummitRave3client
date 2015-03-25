@@ -168,6 +168,18 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 				//sendInfo();
 			}
 			
+			if(e.getKeyCode()==KeyEvent.VK_A) 
+			{
+				player.Hit(10);
+				System.out.println(player.getHealth());
+			}
+			
+			if(e.getKeyCode()==KeyEvent.VK_D) 
+			{
+				player.Heal();
+				System.out.println(player.getHealth());
+			}
+			
 			sendInfo();
 		
 		//System.out.println(Variables.directionHeldX+" "+Variables.directionHeldY);
