@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -51,7 +52,12 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 	addMouseListener(this);
 	addMouseMotionListener(this);
 	GUI.makeGUIObjects(player);
-	world = new World(player.getX(),player.getY());
+	try {
+		world = new World(player.getX(),player.getY());
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	sendInfo();
 	}
 	
