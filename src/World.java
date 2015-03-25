@@ -22,7 +22,6 @@ public class World {
 		
 		for(int i=0;i<mp.size();i++)
 		{
-			//System.out.println("hi"+mp.get(i).getX()+" "+mp.size());
 			mp.get(i).drawMPlayer(g,pX,pY);	
 		}
 	}

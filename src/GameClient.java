@@ -61,18 +61,13 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 0, 400, 400);
 		
+		
 		world.drawWorld(player.getX(), player.getY(), g,mp);
 		GUI.drawEverything(g);
 		
+		
 		g.setColor(Color.BLACK);
-		player.drawPlayer(g);
-		for(int i=0;i<mp.size();i++)
-		{
-			//System.out.println("hi"+mp.get(i).getX()+" "+mp.size());
-			//mp.get(i).drawPlayer(g);	
-		}
-		
-		
+		player.drawPlayer(g);		
 	}
 	
 

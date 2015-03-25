@@ -18,8 +18,6 @@ public class Tile {
 	{
 		g.setColor(c);
 		g.fillRect(x-pX+180, y-pY+180, 16, 16);
-		//g.fillRect(x-pX, y-pY, 16, 16);
-		//g.fillRect(pX-x, pY-y, 16, 16);
 	}
 
 }
