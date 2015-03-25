@@ -12,6 +12,7 @@ public class Player implements Serializable{
 	private int y;
 	private String userName;
 	private boolean signedIn;
+	private static int health=100;
 	
 	public Player(int x, int y, String userName)
 	{
@@ -40,6 +41,11 @@ public class Player implements Serializable{
 	public String getUserName()
 	{
 		return userName;
+	}
+	
+	public static int getHealth()
+	{
+		return health;
 	}
 	
 	public void moveLeft()

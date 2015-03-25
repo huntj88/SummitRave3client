@@ -49,6 +49,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 	addKeyListener(this);
 	addMouseListener(this);
 	addMouseMotionListener(this);
+	GUI.makeGUIObjects(player);
 	sendInfo();
 	}
 	
@@ -58,14 +59,14 @@ public class GameClient extends JPanel implements Runnable, KeyListener, MouseLi
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 0, 400, 400);
 		
+		GUI.drawEverything(g);
 		
-		g.setColor(Color.CYAN);
+		g.setColor(Color.BLACK);
 		player.drawPlayer(g);
 		for(int i=0;i<mp.size();i++)
 		{
 			//System.out.println("hi"+mp.get(i).getX()+" "+mp.size());
-			mp.get(i).drawPlayer(g);
-			
+			mp.get(i).drawPlayer(g);	
 		}
 		
 		
