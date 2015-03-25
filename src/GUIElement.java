@@ -9,7 +9,7 @@ public abstract class GUIElement {
 	protected int height;
 	protected int width;
 	
-	public GUIElement(int x, int y, int height, int width, String nameOfElement)
+	public GUIElement(int x, int y, int width, int height, String nameOfElement)
 	{
 		this.x=x;
 		this.y=y;

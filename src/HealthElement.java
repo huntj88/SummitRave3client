@@ -9,7 +9,7 @@ public class HealthElement extends GUIElement{
 	
 	public HealthElement()
 	{
-		super(0, 0, 25, 100,"Health Bar");
+		super(5, 5, 25, 100,"Health Bar");
 	}
 	
 	public void draw(Graphics g)
