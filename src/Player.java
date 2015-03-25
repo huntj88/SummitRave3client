@@ -13,6 +13,7 @@ public class Player implements Serializable{
 	private String userName;
 	private boolean signedIn;
 	private static int health=100;
+	private int playerState = 1;
 	
 	public Player(int x, int y, String userName)
 	{
@@ -32,6 +33,16 @@ public class Player implements Serializable{
 	{
 		g.fillRect(x-pX+180, y-pY+180, 10, 10);
 		System.out.println((pX-x)+" "+(pY-y));
+	}
+	
+	public void playerStates()
+	{
+		switch(playerState)
+		{
+			case 0: //dead
+			case 1: //normal
+			case 2: //other
+		}
 	}
 	
 	public void signOut()
@@ -56,12 +67,29 @@ public class Player implements Serializable{
 	
 	public void Hit(int damage)
 	{
-		health-=damage;
+		if (health>0)
+			health-=damage;
+		else 
+		{
+			playerState = 0;
+			health = 0;
+		}
 	}
 	
-	public void Heal()
+	public boolean fullHealth()
 	{
-		health++;
+		if (health >= 100)
+		{
+			health = 100;
+			return true;
+		}
+		return false;
+	}
+	
+	public void Heal(int healVal)
+	{
+		if (!fullHealth())
+			health+=healVal;
 	}
 	
 	public void moveLeft()

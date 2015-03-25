@@ -15,6 +15,7 @@ public class HealthElement extends GUIElement{
 	
 	public void draw(Graphics g)
 	{
+		setWidth();
 		g.setColor(Color.BLACK);
 		g.drawRect(x-1,y-1,width+1,height+1);
 		g.setColor(c);
