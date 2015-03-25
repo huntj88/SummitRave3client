@@ -7,23 +7,29 @@ import java.util.TimerTask;
 
 public class HealthElement extends GUIElement{
 
-	private Color c = Color.RED;
+	private Color c = Color.GREEN;
 	private int visibleHealth = width;
+	private int tempHealth = 0;
+	public final int DELAY = 3;
+	Timer timer;
+	
 	
 	public HealthElement()
 	{
 		super(5, 5, Player.getHealth(), 10,"Health Bar");
-		
+		timer = new Timer();
+		timer.schedule(new UpdateYellowTask(), 0,DELAY*1000);
 	}
 	
 	public void draw(Graphics g)
 	{
 		setWidth();
-		tick();
 		g.setColor(Color.BLACK);
 		g.drawRect(x-1,y-1,101,height+1);
-		g.setColor(Color.GREEN);
+		g.setColor(Color.RED);
 		g.fillRect(x,y,visibleHealth,height);
+		g.setColor(Color.YELLOW);
+		g.fillRect(x,y,tempHealth, height);
 		g.setColor(c);
 		g.fillRect(x,y,width,height);
 		
@@ -32,22 +38,28 @@ public class HealthElement extends GUIElement{
 	public void setWidth()
 	{
 		width = Player.getHealth();
+		
 	}
 	
-	public void tick()
+	public void syncHealth()
 	{
-		if (width < visibleHealth)
-		{
-			visibleHealth -= 1;
+		while(tempHealth != width){
+			if (tempHealth <= width)
+				tempHealth = width;
+			else
+				tempHealth--;
+			System.out.print(tempHealth + " ");
 		}
-		else if (width != visibleHealth) {
-			   // Make sure we don't go over
-			   visibleHealth = width;
-			}
 	}
 	
 	public int getVisibleHealth()
 	{
 		return visibleHealth;
+	}
+	
+	class UpdateYellowTask extends TimerTask {
+		public void run() {
+			syncHealth();
+		}
 	}
 }
