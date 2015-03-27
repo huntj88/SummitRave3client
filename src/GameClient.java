@@ -7,55 +7,53 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+
 public class GameClient extends JPanel implements Runnable, KeyListener,
 		MouseListener, MouseMotionListener {
 
-	private Socket socket;
-	// The streams we communicate to the server; these come
-	// from the socket
-	private ObjectOutputStream dout;
-	private ObjectInputStream din;
+	private DatagramSocket socket = new DatagramSocket();
+	byte[] buffer = new byte[1000];
+	private InetAddress hostAddress;
+	private DatagramPacket out;
+	
 	private Player player;
 	private ArrayList<Player> mp = new ArrayList<Player>();
 	private World world;
+	private ListenThread listenToServer;
 
-	public GameClient(String host, int port, String username) {
+	public GameClient(String host, int port, String username) throws IOException {
 		player = new Player(0, 0, username);
-		try {
-			// Initiate the connection
-			socket = new Socket(host, port);
-			// We got a connection! Tell the world
-			System.out.println("connected to " + socket);
-			// Let's grab the streams and create DataInput/Output streams
-			// from them
-			din = new ObjectInputStream(socket.getInputStream());
-			dout = new ObjectOutputStream(socket.getOutputStream());
-			// Start a background thread for receiving messages
-			// new Thread(this).start();
-		} catch (IOException ie) {
-			System.out.println(ie);
-		}
+		
+		hostAddress = InetAddress.getByName(host);
+		//new ListenThread().start();
+		
+		String outString ="Login "+username;
+	    buffer = outString.getBytes();
+	    out = new DatagramPacket(buffer, buffer.length, hostAddress, port);
+	    socket.send(out);
+			
 		setFocusable(true);
 		// setVisible(true);
+		listenToServer=new ListenThread();
 		new Thread(this).start();
 		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		GUI.makeGUIObjects(player);
+		
 		try {
 			world = new World(player.getX(), player.getY());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sendInfo();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -72,13 +70,12 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 
 	@Override
 	public void run() {
-		try {
-			sendInfo();
+		//try {
 			// Receive messages one-by-one, forever
 			while (true) {
 				// Get the next message
 				// System.out.println("blah");
-				Player newPlayer = (Player) din.readObject();
+				/*Player newPlayer = (Player) din.readObject();
 				// System.out.println(newPlayer.isSignedIn());
 				// if(!mp.contains(message)&&!message.getUserName().equals(player.getUserName()))
 				boolean add = true;
@@ -105,9 +102,8 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 					}
 					if (add == true) {
 						mp.add(newPlayer);
-						sendInfo();
 					}
-				}
+				}*/
 				repaint();
 
 				try {
@@ -117,39 +113,42 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 					e.printStackTrace();
 				}
 			}
-		} catch (IOException ie) {
+		/*} catch (IOException ie) {
 			System.out.println(ie);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		}*/
 	}
 
-	private void sendInfo() {
-		try {
-			// Send it to the server
-
-			dout.writeObject(player);
-			dout.reset();
-			// Clear out text input field
-		} catch (IOException ie) {
-			System.out.println(ie);
-		}
+	public void sendInfo(String outString) throws IOException {
+		
+    	buffer = outString.getBytes();
+	    out = new DatagramPacket(buffer, buffer.length, hostAddress, 4000);
+	    socket.send(out);
+	    System.out.println("sent");
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
+		String packetCreate="";
+		
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.moveRight();
+			packetCreate="Move right ";
 			// System.out.println(player.getX());
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.moveLeft();
+			packetCreate="Move left ";
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			player.moveUp();
+			packetCreate="Move up ";
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.moveDown();
+			packetCreate="Move down ";
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -164,9 +163,15 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		if (e.getKeyCode() == KeyEvent.VK_D) {
 			player.Heal(10);
 			System.out.println(player.getHealth());
+			packetCreate="heal";
 		}
 
-		sendInfo();
+		try {
+			sendInfo(packetCreate);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// System.out.println(Variables.directionHeldX+" "+Variables.directionHeldY);
 	}
