@@ -33,8 +33,6 @@ public class Start implements ActionListener{
 		f.add(pass, BorderLayout.CENTER);
 		f.add(login, BorderLayout.SOUTH);
 		
-		final String username=user.getText();
-		
 		f.setSize(200,110);
 		f.setVisible(true);
 		login.addActionListener(new ActionListener(){
@@ -44,6 +42,7 @@ public class Start implements ActionListener{
 
 		    	 f.setVisible(false);
 		         //with maybe something like this?
+		    	 String username=user.getText();
 		         char[] sPass = pass.getPassword();
 		         //Then compare with some other string/data you already have saved somewhere...
 		         f.remove(login);
@@ -93,8 +92,9 @@ public class Start implements ActionListener{
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
 				System.out.println("closing");
+				String username=user.getText();
 				try {
-					Logout l = new Logout(ip, port,username);
+					new Logout(ip, port,username);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

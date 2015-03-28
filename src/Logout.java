@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -19,8 +18,9 @@ public class Logout {
 		
 		String outString ="Logout "+username;
 	    buffer = outString.getBytes();
-	    out = new DatagramPacket(buffer, buffer.length, hostAddress, 4000);
+	    out = new DatagramPacket(buffer, buffer.length, hostAddress, port);
 	    socket.send(out);
+	    System.out.println("closing1");
 		
 	}
 }

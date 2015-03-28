@@ -86,10 +86,14 @@ public class Player implements Serializable{
 		return false;
 	}
 	
-	public void Heal(int healVal)
+	public String Heal(int healVal)
 	{
 		if (!fullHealth())
+		{
 			health+=healVal;
+			return "heal "+userName+" "+healVal;
+		}
+		return"";
 	}
 	
 	public void moveLeft()

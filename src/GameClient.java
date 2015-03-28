@@ -73,6 +73,21 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		//try {
 			// Receive messages one-by-one, forever
 			while (true) {
+				
+				ArrayList<String> updates = listenToServer.getServerUpdates();
+				if(updates.size()>0)
+				{
+					for(String data : updates)
+					{
+						String[] splitData=data.split(" ");
+						
+						//if(!splitData[0].equals(player.getUserName()))
+						/*if(splitData.length>1&&!splitData[1].equals(player.getUserName()))
+						System.out.println(splitData[1]);*/
+						System.out.println(data);
+					}
+				}
+				listenToServer.updates.clear();
 				// Get the next message
 				// System.out.println("blah");
 				/*Player newPlayer = (Player) din.readObject();
@@ -126,7 +141,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
     	buffer = outString.getBytes();
 	    out = new DatagramPacket(buffer, buffer.length, hostAddress, 4000);
 	    socket.send(out);
-	    System.out.println("sent");
+	    //System.out.println("sent");
 	}
 
 	@Override
@@ -136,19 +151,19 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.moveRight();
-			packetCreate="Move right ";
+			packetCreate="Move "+player.getUserName()+" right";
 			// System.out.println(player.getX());
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.moveLeft();
-			packetCreate="Move left ";
+			packetCreate="Move "+player.getUserName()+" left";
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			player.moveUp();
-			packetCreate="Move up ";
+			packetCreate="Move "+player.getUserName()+" up";
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.moveDown();
-			packetCreate="Move down ";
+			packetCreate="Move "+player.getUserName()+" down";
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -157,13 +172,12 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 
 		if (e.getKeyCode() == KeyEvent.VK_A) {
 			player.Hit(10);
-			System.out.println(player.getHealth());
+			//System.out.println(player.getHealth());
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_D) {
-			player.Heal(10);
-			System.out.println(player.getHealth());
-			packetCreate="heal";
+		if (e.getKeyCode() == KeyEvent.VK_D) {		
+			packetCreate=player.Heal(10);
+			//System.out.println(player.getHealth());
 		}
 
 		try {
