@@ -11,9 +11,11 @@ public class ListenThread extends Thread{
     DatagramSocket socket;
     DatagramPacket packet;
     ArrayList<String> updates = new ArrayList<String>();
+    String username;
     
-	public ListenThread() throws SocketException
+	public ListenThread(String username) throws SocketException
 	{
+		this.username=username;
 		socket = new DatagramSocket(PORT);
 		packet = new DatagramPacket(buf, buf.length);
 		start();
@@ -26,7 +28,10 @@ public class ListenThread extends Thread{
 	    {
 	    	try {
 				socket.receive(packet);
-				updates.add(new String(packet.getData(), 0, packet.getLength()));
+				String recieved=new String(packet.getData(), 0, packet.getLength());
+				
+				if(!recieved.contains(username))
+				updates.add(recieved);
 				//System.out.println("From Client: "+new String(packet.getData(), 0, packet.getLength()));
 				
 				/*if(updates.size()>0)

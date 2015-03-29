@@ -41,7 +41,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 			
 		setFocusable(true);
 		// setVisible(true);
-		listenToServer=new ListenThread();
+		listenToServer=new ListenThread(username);
 		new Thread(this).start();
 		addKeyListener(this);
 		addMouseListener(this);
