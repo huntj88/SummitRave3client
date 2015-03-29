@@ -82,11 +82,12 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 						String[] splitData=data.split(" ");
 						
 						//if the user is someone else update that user on this clients screen, else just ignore. no point in the client updating itself with its own data
-						if(splitData.length>1&&!splitData[1].equals(player.getUserName()))
+						//if(splitData.length>1&&!splitData[1].equals(player.getUserName()))
 						{
+							
 							if(splitData[0].equals("Login"))
 					    	{
-					    		login(splitData);
+					    		login(splitData[1]);
 					    	}
 							else if(splitData[0].equals("Logout"))
 							{
@@ -94,9 +95,12 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 							}
 							else if(splitData[0].equals("Move"))
 							{
+								System.out.println("someoneMoved");
+								
 								boolean loggedIn=false;
 								for(Player test:mp)
 								{
+									System.out.println(splitData[1]+" "+test.getUserName());
 									if(splitData[1].equals(test.getUserName()))
 									{
 										test.setX(Integer.parseInt(splitData[2]));
@@ -107,7 +111,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 									
 								}
 								if(loggedIn==false)
-									login(splitData);
+									login(splitData[1]);
 							}
 							//System.out.println(mp.size());
 						}
@@ -133,24 +137,20 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		}*/
 	}
 	
-	public void login(String[] splitData)
+	public void login(String name)
 	{
-		if(splitData[0].equals("Login"))
-    	{
     		boolean add=true;
     		for(Player test : mp)
     		{
-    			if(test.getUserName().equals(splitData[1]))
+    			if(test.getUserName().equals(name))
     			add=false;
     			
     		}
     		if(add)
     		{
-    		mp.add(new Player(0,0,splitData[0]));
+    		mp.add(new Player(0,0,name));
     		System.out.println("player added");
     		}
-    		
-    	}
 	}
 
 	public void sendInfo(String outString) throws IOException {
