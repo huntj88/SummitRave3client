@@ -26,16 +26,19 @@ public class Start implements ActionListener{
 		f.add(g);*/
 		
 		JTextField user = new JTextField("Username");
+		user.requestFocus();
+		user.selectAll();
 		JPasswordField pass = new JPasswordField("Password");
 		JButton login = new JButton("Login");
 		f.setLayout(new BorderLayout());
 		f.add(user, BorderLayout.NORTH);
 		f.add(pass, BorderLayout.CENTER);
-		f.add(login, BorderLayout.SOUTH);
-		
+		f.add(login, BorderLayout.SOUTH);			
 		f.setSize(200,110);
 		f.setVisible(true);
-		login.addActionListener(new ActionListener(){
+		
+		
+		ActionListener loginAction =(new ActionListener(){
 
 		     public void actionPerformed(ActionEvent e){
 		         //Check login stuff here... 
@@ -61,6 +64,8 @@ public class Start implements ActionListener{
 		        f.setVisible(true);
 		     }
 		});
+		user.addActionListener(loginAction);
+		login.addActionListener(loginAction);
 		
 		f.addWindowListener(new WindowListener() {
 			
@@ -116,6 +121,8 @@ public class Start implements ActionListener{
 		
 		
 	}
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -14,13 +14,11 @@ public class Logout {
 	public Logout(String host, int port, String username) throws IOException {
 		
 		hostAddress = InetAddress.getByName(host);
-		//new ListenThread().start();
 		
 		String outString ="Logout "+username;
 	    buffer = outString.getBytes();
 	    out = new DatagramPacket(buffer, buffer.length, hostAddress, port);
 	    socket.send(out);
-	    System.out.println("closing1");
 		
 	}
 }
