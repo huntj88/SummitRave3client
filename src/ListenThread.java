@@ -10,7 +10,7 @@ public class ListenThread extends Thread{
     byte[] buf = new byte[1000];
     DatagramSocket socket;
     DatagramPacket packet;
-    ArrayList<String> updates = new ArrayList<String>();
+    ArrayList<String[]> updates = new ArrayList<String[]>();
     String username;
     
 	public ListenThread(String username) throws SocketException
@@ -28,9 +28,9 @@ public class ListenThread extends Thread{
 	    {
 	    	try {
 				socket.receive(packet);
-				String recieved=new String(packet.getData(), 0, packet.getLength());
+				String recieved[]=new String(packet.getData(), 0, packet.getLength()).split(" ");
 				
-				if(!recieved.contains(username))
+				if(!recieved[1].equals(username))
 				updates.add(recieved);
 				//System.out.println("From Client: "+new String(packet.getData(), 0, packet.getLength()));
 				
@@ -45,9 +45,9 @@ public class ListenThread extends Thread{
 	    }
 	}
 	
-	public ArrayList<String> getServerUpdates()
+	public ArrayList<String[]> getServerUpdates()
 	{
-		ArrayList<String> halfway=updates;
+		ArrayList<String[]> halfway=updates;
 		//updates.clear();
 		//System.out.println(halfway.size());
 		return halfway;

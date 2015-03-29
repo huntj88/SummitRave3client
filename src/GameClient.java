@@ -74,12 +74,12 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 			// Receive messages one-by-one, forever
 			while (true) {
 				
-				ArrayList<String> updates = listenToServer.getServerUpdates();
+				ArrayList<String[]> updates = listenToServer.getServerUpdates();
 				if(updates.size()>0)
 				{
-					for(String data : updates)
+					for(String[] splitData : updates)
 					{
-						String[] splitData=data.split(" ");
+						//String[] splitData=data.split(" ");
 						
 						//if the user is someone else update that user on this clients screen, else just ignore. no point in the client updating itself with its own data
 						//if(splitData.length>1&&!splitData[1].equals(player.getUserName()))
