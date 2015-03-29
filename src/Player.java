@@ -9,12 +9,18 @@ public class Player{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private int drawDisplacementX = VariablesFinal.SIZEX_OF_SCREEN/2;
+	private int drawDisplacementY = VariablesFinal.SIZEY_OF_SCREEN/2;
+	
 	private int x;
 	private int y;
 	private String userName;
 	private boolean signedIn;
 	private int health=100;
 	private int playerState = 1;
+	private boolean sprinting =false;
+	private int speed = 4;
 	
 	public Player(int x, int y, String userName)
 	{
@@ -28,10 +34,10 @@ public class Player{
 	{ //+5 on x is cause that is half the width of player square
 		int stringWidth=g.getFontMetrics().stringWidth(userName);
 		g.setColor(Color.BLACK);
-		g.fillRect(180, 180, 10, 10);
-		g.fillRect(180-stringWidth/2+5, 180-20, g.getFontMetrics().stringWidth(userName), 10);
+		g.fillRect(drawDisplacementX, drawDisplacementY, 10, 10);
+		g.fillRect(drawDisplacementX-stringWidth/2+5, drawDisplacementY-20, g.getFontMetrics().stringWidth(userName), 10);
 		g.setColor(Color.WHITE);
-		g.drawString(userName,180-stringWidth/2+5, 180-10);
+		g.drawString(userName,drawDisplacementX-stringWidth/2+5, drawDisplacementY-10);
 	}
 	
 	public void drawMPlayer(Graphics g, int pX, int pY) //draw other players
@@ -40,18 +46,18 @@ public class Player{
 		
 		//player block
 		g.setColor(Color.BLUE);
-		g.fillRect(x-pX+180, y-pY+180, 10, 10);
+		g.fillRect(x-pX+drawDisplacementX, y-pY+drawDisplacementY, 10, 10);
 		
 		//name above player
-		g.fillRect(x-pX+180-stringWidth/2+5, y-pY+180-20, stringWidth, 10);
+		g.fillRect(x-pX+drawDisplacementX-stringWidth/2+5, y-pY+drawDisplacementY-20, stringWidth, 10);
 		g.setColor(Color.WHITE);
-		g.drawString(userName,x-pX+180-stringWidth/2+5, y-pY+180-10);
+		g.drawString(userName,x-pX+drawDisplacementX-stringWidth/2+5, y-pY+drawDisplacementY-10);
 			
 		//health bar
 		g.setColor(Color.GREEN);
-		g.fillRect(x-pX+180-20, y-pY+180-9,health/2,5);
+		g.fillRect(x-pX+drawDisplacementX-20, y-pY+drawDisplacementY-9,health/2,5);
 		g.setColor(Color.BLACK);
-		g.drawRect(x-pX+180-20, y-pY+180-10,50,6);
+		g.drawRect(x-pX+drawDisplacementX-20, y-pY+drawDisplacementY-10,50,6);
 	}
 	
 	public void playerStates()
@@ -87,6 +93,29 @@ public class Player{
 	public void setHealth(int health)
 	{
 		this.health=health;
+	}
+	
+	public void setSpeed(int speed)
+	{
+		this.speed=speed;
+	}
+	
+	public void sprint()
+	{
+		if(sprinting==false)
+		{
+			speed=speed*2;
+			sprinting=true;
+		}
+	}
+	
+	public void stopSprint()
+	{
+		if(sprinting)
+		{
+			speed=speed/2;
+			sprinting=false;
+		}
 	}
 	
 	public String Hit(int damage)
@@ -128,21 +157,21 @@ public class Player{
 	
 	public void moveLeft()
 	{
-		x--;
+		x-=speed;
 	}
 	public void moveRight()
 	{
-		x++;
+		x+=speed;
 	}
 	
 	public void moveUp()
 	{
-		y--;
+		y-=speed;
 	}
 	
 	public void moveDown()
 	{
-		y++;
+		y+=speed;
 	}
 	
 	public int getX()

@@ -48,7 +48,7 @@ public class Start implements ActionListener{
 		         f.remove(login);
 		         f.remove(user);
 		         f.remove(pass);
-		         f.setSize(400,400);
+		         f.setSize(VariablesFinal.SIZEX_OF_SCREEN,VariablesFinal.SIZEY_OF_SCREEN);
 		         
 		 		GameClient g = null;
 				try {

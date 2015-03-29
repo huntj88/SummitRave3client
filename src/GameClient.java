@@ -60,13 +60,14 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
 		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(0, 0, 400, 400);
+		g.fillRect(0, 0, VariablesFinal.SIZEX_OF_SCREEN, VariablesFinal.SIZEY_OF_SCREEN);
 
 		world.drawWorld(player.getX(), player.getY(), g, mp);
-		GUI.drawEverything(g);
-
+		
 		g.setColor(Color.BLACK);
 		player.drawPlayer(g);
+		
+		GUI.drawEverything(g);
 	}
 
 	@Override
@@ -92,17 +93,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 					    	}
 							else if(splitData[0].equals("Logout"))
 							{
-								Iterator<Player> i = mp.iterator();
-					    		while (i.hasNext())
-					    		{
-					    			
-					    			if(i.next().getUserName().equals(splitData[1]))
-					    			{
-					    				i.remove();
-					    				System.out.println(splitData[1]+" has logged off");
-					    				break;
-					    			}
-					    		}
+								logout(splitData[1]);
 							}
 							else if(splitData[0].equals("Move"))
 							{
@@ -178,6 +169,21 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
     		System.out.println("player added");
     		}
 	}
+	
+	public void logout(String name)
+	{
+		Iterator<Player> i = mp.iterator();
+		while (i.hasNext())
+		{
+			
+			if(i.next().getUserName().equals(name))
+			{
+				i.remove();
+				System.out.println(name+" has logged off");
+				break;
+			}
+		}
+	}
 
 	public void sendInfo(String outString) throws IOException {
 		
@@ -210,6 +216,8 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			
+			player.sprint();
 			// sendInfo();
 		}
 
@@ -221,6 +229,10 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		if (e.getKeyCode() == KeyEvent.VK_D) {		
 			packetCreate=player.Heal(10);
 			//System.out.println(player.getHealth());
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {		
+			MenuElement.switchMenuState();
 		}
 
 		try {
@@ -236,7 +248,11 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			
+			player.stopSprint();;
+			// sendInfo();
+		}
 	}
 
 	@Override

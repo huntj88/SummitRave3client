@@ -11,6 +11,7 @@ public class HealthElement extends GUIElement {
 	public final int DELAY = 25;
 	Timer timer;
 	private Player player;
+	
 	public HealthElement(Player player) {
 		super(5, 5, player.getHealth(), 10, "Health Bar");
 		this.player=player;

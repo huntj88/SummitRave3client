@@ -1,4 +1,4 @@
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
