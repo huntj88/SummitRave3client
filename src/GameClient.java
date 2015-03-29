@@ -81,44 +81,32 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 					{
 						String[] splitData=data.split(" ");
 						
-						//if(!splitData[0].equals(player.getUserName()))
-						/*if(splitData.length>1&&!splitData[1].equals(player.getUserName()))
-						System.out.println(splitData[1]);*/
-						System.out.println(data);
+						//if the user is someone else update that user on this clients screen, else just ignore. no point in the client updating itself with its own data
+						if(splitData.length>1&&!splitData[1].equals(player.getUserName()))
+						{
+							if(splitData[0].equals("Login"))
+					    	{
+					    		boolean add=true;
+					    		for(Player test : mp)
+					    		{
+					    			if(test.getUserName().equals(splitData[1]))
+					    			add=false;
+					    			
+					    		}
+					    		if(add)
+					    		{
+					    		mp.add(new Player(0,0,splitData[0]));
+					    		System.out.println("player added");
+					    		}
+					    		
+					    	}
+							//System.out.println(mp.size());
+						}
+						
+						//System.out.println(data);
 					}
 				}
 				listenToServer.updates.clear();
-				// Get the next message
-				// System.out.println("blah");
-				/*Player newPlayer = (Player) din.readObject();
-				// System.out.println(newPlayer.isSignedIn());
-				// if(!mp.contains(message)&&!message.getUserName().equals(player.getUserName()))
-				boolean add = true;
-				if (!newPlayer.getUserName().equals(player.getUserName())) {
-					for (int i = 0; i < mp.size(); i++) {
-						if (newPlayer.isSignedIn() == false
-								&& mp.get(i).getUserName()
-										.equals(newPlayer.getUserName())) {
-							mp.remove(i);
-							add = false;
-							System.out.println("signedout");
-						} else if (mp.get(i).getUserName()
-								.equals(newPlayer.getUserName())) {
-							add = false;
-							if (mp.get(i).getX() != newPlayer.getX()
-									|| mp.get(i).getY() != newPlayer.getY()) {
-								mp.remove(i);
-								add = true;
-
-							}
-
-						}
-
-					}
-					if (add == true) {
-						mp.add(newPlayer);
-					}
-				}*/
 				repaint();
 
 				try {
