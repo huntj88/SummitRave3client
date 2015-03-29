@@ -40,6 +40,8 @@ public class Player{
 		g.fillRect(x-pX+180, y-pY+180-20, g.getFontMetrics().stringWidth(userName), 10);
 		g.setColor(Color.WHITE);
 		g.drawString(userName,x-pX+180, y-pY+180-10);
+		g.setColor(Color.GREEN);
+		g.fillRect(x-pX+180, y-pY+180,5,50);
 	}
 	
 	public void playerStates()
