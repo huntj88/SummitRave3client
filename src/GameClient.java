@@ -198,6 +198,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		}
 
 		try {
+			if(!packetCreate.equals(""))
 			sendInfo(packetCreate);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
