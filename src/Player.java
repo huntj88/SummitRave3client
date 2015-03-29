@@ -2,7 +2,7 @@ import java.awt.Graphics;
 import java.io.Serializable;
 
 
-public class Player implements Serializable{
+public class Player{
 	
 	/**
 	 * 
