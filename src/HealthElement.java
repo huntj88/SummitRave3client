@@ -4,58 +4,50 @@ import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
-public class HealthElement extends GUIElement{
+public class HealthElement extends GUIElement {
 
 	private Color c = Color.GREEN;
 	private int visibleHealth = width;
 	private int tempHealth = 0;
-	public final int DELAY = 2;
+	public final int DELAY = 1;
 	Timer timer;
-	
-	
-	public HealthElement()
-	{
-		super(5, 5, Player.getHealth(), 10,"Health Bar");
+
+	public HealthElement() {
+		super(5, 5, Player.getHealth(), 10, "Health Bar");
 		timer = new Timer();
-		timer.schedule(new UpdateYellowTask(), 0,DELAY*1000);
+		timer.schedule(new UpdateYellowTask(), 0, DELAY * 100);
 	}
-	
-	public void draw(Graphics g)
-	{
+
+	public void draw(Graphics g) {
 		setWidth();
 		g.setColor(Color.BLACK);
-		g.drawRect(x-1,y-1,101,height+1);
+		g.drawRect(x - 1, y - 1, 101, height + 1);
 		g.setColor(Color.RED);
-		g.fillRect(x,y,visibleHealth,height);
+		g.fillRect(x, y, visibleHealth, height);
 		g.setColor(Color.YELLOW);
-		g.fillRect(x,y,tempHealth, height);
+		g.fillRect(x, y, tempHealth, height);
 		g.setColor(c);
-		g.fillRect(x,y,width,height);
-		
+		g.fillRect(x, y, width, height);
+		System.out.println(tempHealth);
+
 	}
-	
-	public void setWidth()
-	{
+
+	public void setWidth() {
 		width = Player.getHealth();
 	}
-	
-	public void syncHealth()
-	{
-		while(tempHealth != width){
-			if (tempHealth <= width)
-				tempHealth = width;
-			else
-				tempHealth--;
-			System.out.print(tempHealth + " ");
-		}
+
+	public void syncHealth() {
+		if (tempHealth <= width)
+			tempHealth = width;
+		else
+			tempHealth--;
+		System.out.print(tempHealth + " ");
 	}
-	
-	public int getVisibleHealth()
-	{
+
+	public int getVisibleHealth() {
 		return visibleHealth;
 	}
-	
+
 	class UpdateYellowTask extends TimerTask {
 		public void run() {
 			syncHealth();
