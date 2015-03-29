@@ -9,13 +9,13 @@ public class HealthElement extends GUIElement {
 	private Color c = Color.GREEN;
 	private int visibleHealth = width;
 	private int tempHealth = 0;
-	public final int DELAY = 1;
+	public final int DELAY = 25;
 	Timer timer;
 
 	public HealthElement() {
 		super(5, 5, Player.getHealth(), 10, "Health Bar");
 		timer = new Timer();
-		timer.schedule(new UpdateYellowTask(), 0, DELAY * 100);
+		timer.schedule(new UpdateYellowTask(), 0, DELAY);
 	}
 
 	public void draw(Graphics g) {
@@ -28,7 +28,6 @@ public class HealthElement extends GUIElement {
 		g.fillRect(x, y, tempHealth, height);
 		g.setColor(c);
 		g.fillRect(x, y, width, height);
-		System.out.println(tempHealth);
 
 	}
 
