@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.io.Serializable;
 
@@ -25,14 +26,20 @@ public class Player{
 	
 	public void drawPlayer(Graphics g)
 	{
+		g.setColor(Color.BLACK);
 		g.fillRect(180, 180, 10, 10);
+		g.fillRect(180, 180-20, g.getFontMetrics().stringWidth(userName), 10);
+		g.setColor(Color.WHITE);
 		g.drawString(userName,180, 180-10);
 	}
 	
 	public void drawMPlayer(Graphics g, int pX, int pY) //draw other players
 	{
+		g.setColor(Color.BLUE);
 		g.fillRect(x-pX+180, y-pY+180, 10, 10);
-		//System.out.println((pX-x)+" "+(pY-y));
+		g.fillRect(x-pX+180, y-pY+180-20, g.getFontMetrics().stringWidth(userName), 10);
+		g.setColor(Color.WHITE);
+		g.drawString(userName,x-pX+180, y-pY+180-10);
 	}
 	
 	public void playerStates()
