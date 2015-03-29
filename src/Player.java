@@ -74,15 +74,26 @@ public class Player{
 		return health;
 	}
 	
-	public void Hit(int damage)
+	public void setHealth(int health)
+	{
+		this.health=health;
+	}
+	
+	public String Hit(int damage)
 	{
 		if (health>0)
+		{
 			health-=damage;
+			return "Health "+userName+" "+health;
+		}
 		else 
 		{
 			playerState = 0;
 			health = 0;
+			return "";
 		}
+		
+		
 	}
 	
 	public boolean fullHealth()
@@ -100,7 +111,7 @@ public class Player{
 		if (!fullHealth())
 		{
 			health+=healVal;
-			return "heal "+userName+" "+healVal;
+			return "Health "+userName+" "+health;
 		}
 		return"";
 	}

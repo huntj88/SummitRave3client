@@ -122,6 +122,23 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 								if(loggedIn==false)
 									login(splitData[1]);
 							}
+							else if(splitData[0].equals("Health"))
+							{
+								
+								boolean loggedIn=false;
+								for(Player test:mp)
+								{
+									if(splitData[1].equals(test.getUserName()))
+									{
+										test.setHealth(Integer.parseInt(splitData[2]));
+										loggedIn=true;
+										break;
+									}
+									
+								}
+								if(loggedIn==false)
+									login(splitData[1]);
+							}
 							//System.out.println(mp.size());
 						}
 						
@@ -197,7 +214,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_A) {
-			player.Hit(10);
+			packetCreate=player.Hit(10);
 			//System.out.println(player.getHealth());
 		}
 
