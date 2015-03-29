@@ -13,7 +13,7 @@ public class Player{
 	private int y;
 	private String userName;
 	private boolean signedIn;
-	private static int health=100;
+	private int health=100;
 	private int playerState = 1;
 	
 	public Player(int x, int y, String userName)
@@ -69,7 +69,7 @@ public class Player{
 		return userName;
 	}
 	
-	public static int getHealth()
+	public int getHealth()
 	{
 		return health;
 	}

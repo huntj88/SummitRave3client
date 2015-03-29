@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,7 +10,7 @@ public class HealthElement extends GUIElement {
 	private int tempHealth = 0;
 	public final int DELAY = 25;
 	Timer timer;
-	Player player;
+	private Player player;
 	public HealthElement(Player player) {
 		super(5, 5, player.getHealth(), 10, "Health Bar");
 		this.player=player;
