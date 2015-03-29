@@ -7,7 +7,7 @@ public class GUI {
 	
 	public static void makeGUIObjects(Player player)
 	{
-		h=new HealthElement();
+		h=new HealthElement(player);
 	}
 	
 	public static void drawEverything(Graphics g)

@@ -11,9 +11,10 @@ public class HealthElement extends GUIElement {
 	private int tempHealth = 0;
 	public final int DELAY = 25;
 	Timer timer;
-
-	public HealthElement() {
-		super(5, 5, Player.getHealth(), 10, "Health Bar");
+	Player player;
+	public HealthElement(Player player) {
+		super(5, 5, player.getHealth(), 10, "Health Bar");
+		this.player=player;
 		timer = new Timer();
 		timer.schedule(new UpdateYellowTask(), 0, DELAY);
 	}
@@ -32,7 +33,8 @@ public class HealthElement extends GUIElement {
 	}
 
 	public void setWidth() {
-		width = Player.getHealth();
+		
+		width = player.getHealth();
 	}
 
 	public void syncHealth() {
