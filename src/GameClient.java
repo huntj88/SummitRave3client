@@ -86,20 +86,29 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 						{
 							if(splitData[0].equals("Login"))
 					    	{
-					    		boolean add=true;
-					    		for(Player test : mp)
-					    		{
-					    			if(test.getUserName().equals(splitData[1]))
-					    			add=false;
-					    			
-					    		}
-					    		if(add)
-					    		{
-					    		mp.add(new Player(0,0,splitData[0]));
-					    		System.out.println("player added");
-					    		}
-					    		
+					    		login(splitData);
 					    	}
+							else if(splitData[0].equals("Logout"))
+							{
+								
+							}
+							else if(splitData[0].equals("Move"))
+							{
+								boolean loggedIn=false;
+								for(Player test:mp)
+								{
+									if(splitData[1].equals(test.getUserName()))
+									{
+										test.setX(Integer.parseInt(splitData[2]));
+										test.setY(Integer.parseInt(splitData[3]));
+										loggedIn=true;
+										break;
+									}
+									
+								}
+								if(loggedIn==false)
+									login(splitData);
+							}
 							//System.out.println(mp.size());
 						}
 						
@@ -123,6 +132,26 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 			e1.printStackTrace();
 		}*/
 	}
+	
+	public void login(String[] splitData)
+	{
+		if(splitData[0].equals("Login"))
+    	{
+    		boolean add=true;
+    		for(Player test : mp)
+    		{
+    			if(test.getUserName().equals(splitData[1]))
+    			add=false;
+    			
+    		}
+    		if(add)
+    		{
+    		mp.add(new Player(0,0,splitData[0]));
+    		System.out.println("player added");
+    		}
+    		
+    	}
+	}
 
 	public void sendInfo(String outString) throws IOException {
 		
@@ -139,19 +168,19 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.moveRight();
-			packetCreate="Move "+player.getUserName()+" right";
+			packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 			// System.out.println(player.getX());
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.moveLeft();
-			packetCreate="Move "+player.getUserName()+" left";
+			packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			player.moveUp();
-			packetCreate="Move "+player.getUserName()+" up";
+			packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.moveDown();
-			packetCreate="Move "+player.getUserName()+" down";
+			packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
