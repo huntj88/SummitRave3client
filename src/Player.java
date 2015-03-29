@@ -41,7 +41,7 @@ public class Player{
 		g.setColor(Color.WHITE);
 		g.drawString(userName,x-pX+180, y-pY+180-10);
 		g.setColor(Color.GREEN);
-		g.fillRect(x-pX+180, y-pY+180,5,50);
+		g.fillRect(x-pX+180, y-pY+180,health/2,5);
 	}
 	
 	public void playerStates()
