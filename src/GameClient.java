@@ -11,6 +11,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JPanel;
 
@@ -91,16 +92,24 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 					    	}
 							else if(splitData[0].equals("Logout"))
 							{
-								
+								Iterator<Player> i = mp.iterator();
+					    		while (i.hasNext())
+					    		{
+					    			
+					    			if(i.next().getUserName().equals(splitData[1]))
+					    			{
+					    				i.remove();
+					    				System.out.println(splitData[1]+" has logged off");
+					    				break;
+					    			}
+					    		}
 							}
 							else if(splitData[0].equals("Move"))
 							{
-								System.out.println("someoneMoved");
 								
 								boolean loggedIn=false;
 								for(Player test:mp)
 								{
-									System.out.println(splitData[1]+" "+test.getUserName());
 									if(splitData[1].equals(test.getUserName()))
 									{
 										test.setX(Integer.parseInt(splitData[2]));

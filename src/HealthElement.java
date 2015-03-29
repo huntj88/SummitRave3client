@@ -41,7 +41,6 @@ public class HealthElement extends GUIElement {
 			tempHealth = width;
 		else
 			tempHealth--;
-		System.out.print(tempHealth + " ");
 	}
 
 	public int getVisibleHealth() {
