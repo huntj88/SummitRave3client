@@ -32,7 +32,7 @@ public class Player implements Serializable{
 	public void drawMPlayer(Graphics g, int pX, int pY) //draw other players
 	{
 		g.fillRect(x-pX+180, y-pY+180, 10, 10);
-		System.out.println((pX-x)+" "+(pY-y));
+		//System.out.println((pX-x)+" "+(pY-y));
 	}
 	
 	public void playerStates()
