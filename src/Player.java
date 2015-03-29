@@ -25,23 +25,33 @@ public class Player{
 	}
 	
 	public void drawPlayer(Graphics g)
-	{
+	{ //+5 on x is cause that is half the width of player square
+		int stringWidth=g.getFontMetrics().stringWidth(userName);
 		g.setColor(Color.BLACK);
 		g.fillRect(180, 180, 10, 10);
-		g.fillRect(180, 180-20, g.getFontMetrics().stringWidth(userName), 10);
+		g.fillRect(180-stringWidth/2+5, 180-20, g.getFontMetrics().stringWidth(userName), 10);
 		g.setColor(Color.WHITE);
-		g.drawString(userName,180, 180-10);
+		g.drawString(userName,180-stringWidth/2+5, 180-10);
 	}
 	
 	public void drawMPlayer(Graphics g, int pX, int pY) //draw other players
 	{
+		int stringWidth=g.getFontMetrics().stringWidth(userName);
+		
+		//player block
 		g.setColor(Color.BLUE);
 		g.fillRect(x-pX+180, y-pY+180, 10, 10);
-		g.fillRect(x-pX+180, y-pY+180-20, g.getFontMetrics().stringWidth(userName), 10);
+		
+		//name above player
+		g.fillRect(x-pX+180-stringWidth/2+5, y-pY+180-20, stringWidth, 10);
 		g.setColor(Color.WHITE);
-		g.drawString(userName,x-pX+180, y-pY+180-10);
+		g.drawString(userName,x-pX+180-stringWidth/2+5, y-pY+180-10);
+			
+		//health bar
 		g.setColor(Color.GREEN);
-		g.fillRect(x-pX+180, y-pY+180,health/2,5);
+		g.fillRect(x-pX+180-20, y-pY+180-9,health/2,5);
+		g.setColor(Color.BLACK);
+		g.drawRect(x-pX+180-20, y-pY+180-10,50,6);
 	}
 	
 	public void playerStates()
