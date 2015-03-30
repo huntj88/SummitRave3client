@@ -96,7 +96,7 @@ public class LoadMap{
 							}
 							else if(mapReader.equals("f"))
 							{
-								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,true,3*17,7*17);
+								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,false,3*17,7*17);
 							}
 							
 						}
