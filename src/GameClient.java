@@ -199,20 +199,32 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		String packetCreate="";
 		
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.moveRight();
-			packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
-			// System.out.println(player.getX());
+			if(world.isValidMove(player,2))
+			{
+				player.moveRight();
+				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+			}
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.moveLeft();
-			packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+			if(world.isValidMove(player,4))
+			{
+				player.moveLeft();
+				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+			}
+
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			player.moveUp();
-			packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+			if(world.isValidMove(player,1))
+			{
+				player.moveUp();
+				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			player.moveDown();
-			packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+			if(world.isValidMove(player,3))
+			{
+				player.moveDown();
+				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+			}
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {

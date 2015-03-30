@@ -96,6 +96,11 @@ public class Player{
 		this.health=health;
 	}
 	
+	public int getSpeed()
+	{
+		return speed;
+	}
+	
 	public void setSpeed(int speed)
 	{
 		this.speed=speed;
