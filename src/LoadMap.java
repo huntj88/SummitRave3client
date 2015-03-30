@@ -14,6 +14,8 @@ public class LoadMap{
 		int x=0;
 		int xFinal=0;
 		int y=0;
+		int startX=0;
+		int startY=0;
 		String mapReader="";
 		//System.out.println(new File(".").getAbsolutePath());
 		Scanner scan = new Scanner(new File("test.txt"));
@@ -28,8 +30,19 @@ public class LoadMap{
 				while(scan2.hasNext())
 				{
 					
+					mapReader= scan2.next();
+					if(!mapReader.equals("."))
+					{
+						if(mapReader.equals("0"))
+						{
+							//this is the center of the map;
+							startX=x;
+							startY=y;
+						}
+						
+					}
 					x++;
-					System.out.print(scan2.next());
+
 					
 				
 				}
@@ -49,50 +62,6 @@ public class LoadMap{
 			
 			x=0;
 			y=0;
-			
-			
-			
-			
-			int startX=0;
-			int startY=0;
-			//find start down
-			scan = new Scanner(new File("test.txt"));
-			scan.useDelimiter(" ");
-				while(scan.hasNextLine())
-				{
-					Scanner scan2 = new Scanner(scan.nextLine());
-					while(scan2.hasNext())
-					{
-						
-						
-						//System.out.print(scan2.next());
-						mapReader= scan2.next();
-						if(!mapReader.equals("."))
-						{
-							if(mapReader.equals("0"))
-							{
-								//this is the center of the map;
-								startX=x;
-								startY=y;
-							}
-							
-						}
-						x++;
-					
-					}
-					x=0;
-					y++;
-					scan2.close();
-				}
-				scan.close();
-			
-			
-			//find start up
-			
-			
-			x=0;
-			y=0;
-			
 			
 			
 			scan = new Scanner(new File("test.txt"));
