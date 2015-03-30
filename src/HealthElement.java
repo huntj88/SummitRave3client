@@ -22,7 +22,7 @@ public class HealthElement extends GUIElement {
 	public void draw(Graphics g) {
 		setWidth();
 		g.setColor(Color.BLACK);
-		g.drawRect(x - 1, y - 1, 101, height + 1);
+		g.drawRect(x - 1, y - 1, 100*2+1, height + 1);
 		g.setColor(Color.RED);
 		g.fillRect(x, y, visibleHealth, height);
 		g.setColor(Color.YELLOW);
@@ -34,7 +34,7 @@ public class HealthElement extends GUIElement {
 
 	public void setWidth() {
 		
-		width = player.getHealth();
+		width = player.getHealth()*2;
 	}
 
 	public void syncHealth() {
