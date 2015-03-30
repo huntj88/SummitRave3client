@@ -30,7 +30,9 @@ public class ListenThread extends Thread{
 				socket.receive(packet);
 				String recieved[]=new String(packet.getData(), 0, packet.getLength()).split(" ");
 				
-				if(!recieved[1].equals(username))
+				System.out.println(recieved[0]);
+				
+				if(!recieved[2].equals(username)||recieved[0].equals("Server"))
 				updates.add(recieved);
 				//System.out.println("From Client: "+new String(packet.getData(), 0, packet.getLength()));
 				
