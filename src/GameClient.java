@@ -35,7 +35,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		hostAddress = InetAddress.getByName(host);
 		//new ListenThread().start();
 		
-		String outString ="Client Login "+username;
+		String outString ="Login "+username;
 	    buffer = outString.getBytes();
 	    out = new DatagramPacket(buffer, buffer.length, hostAddress, port);
 	    socket.send(out);
@@ -87,24 +87,24 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 						//if(splitData.length>1&&!splitData[1].equals(player.getUserName()))
 						{
 							
-							if(splitData[1].equals("Login"))
+							if(splitData[0].equals("Login"))
 					    	{
-					    		login(splitData[2]);
+					    		login(splitData[1]);
 					    	}
-							else if(splitData[1].equals("Logout"))
+							else if(splitData[0].equals("Logout"))
 							{
-								logout(splitData[2]);
+								logout(splitData[1]);
 							}
-							else if(splitData[1].equals("Move"))
+							else if(splitData[0].equals("Move"))
 							{
 								
 								boolean loggedIn=false;
 								for(Player test:mp)
 								{
-									if(splitData[2].equals(test.getUserName()))
+									if(splitData[1].equals(test.getUserName()))
 									{
-										test.setX(Integer.parseInt(splitData[3]));
-										test.setY(Integer.parseInt(splitData[4]));
+										test.setX(Integer.parseInt(splitData[2]));
+										test.setY(Integer.parseInt(splitData[3]));
 										loggedIn=true;
 										break;
 									}
@@ -113,15 +113,15 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 								if(loggedIn==false)
 									login(splitData[1]);
 							}
-							else if(splitData[1].equals("Health"))
+							else if(splitData[0].equals("Health"))
 							{
 								
 								boolean loggedIn=false;
 								for(Player test:mp)
 								{
-									if(splitData[2].equals(test.getUserName()))
+									if(splitData[1].equals(test.getUserName()))
 									{
-										test.setHealth(Integer.parseInt(splitData[3]));
+										test.setHealth(Integer.parseInt(splitData[2]));
 										loggedIn=true;
 										break;
 									}
@@ -202,13 +202,13 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 			if(world.isValidMove(player,2))
 			{
 				player.moveRight();
-				packetCreate="Client Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			if(world.isValidMove(player,4))
 			{
 				player.moveLeft();
-				packetCreate="Client Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 			}
 
 		}
@@ -217,13 +217,13 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 			if(world.isValidMove(player,1))
 			{
 				player.moveUp();
-				packetCreate="Client Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if(world.isValidMove(player,3))
 			{
 				player.moveDown();
-				packetCreate="Client Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 			}
 		}
 
