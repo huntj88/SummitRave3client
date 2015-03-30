@@ -117,6 +117,10 @@ public class LoadMap{
 							{
 								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.GREEN);
 							}
+							else if(mapReader.equals("0"))
+							{
+								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.BLUE);
+							}
 							
 						}
 						x++;
