@@ -50,6 +50,51 @@ public class LoadMap{
 			x=0;
 			y=0;
 			
+			
+			
+			
+			int startX=0;
+			int startY=0;
+			//find start down
+			scan = new Scanner(new File("test.txt"));
+			scan.useDelimiter(" ");
+				while(scan.hasNextLine())
+				{
+					Scanner scan2 = new Scanner(scan.nextLine());
+					while(scan2.hasNext())
+					{
+						
+						
+						//System.out.print(scan2.next());
+						mapReader= scan2.next();
+						if(!mapReader.equals("."))
+						{
+							if(mapReader.equals("0"))
+							{
+								//this is the center of the map;
+								startX=x;
+								startY=y;
+							}
+							
+						}
+						x++;
+					
+					}
+					x=0;
+					y++;
+					scan2.close();
+				}
+				scan.close();
+			
+			
+			//find start up
+			
+			
+			x=0;
+			y=0;
+			
+			
+			
 			scan = new Scanner(new File("test.txt"));
 			scan.useDelimiter(" ");
 				while(scan.hasNextLine())
@@ -65,12 +110,14 @@ public class LoadMap{
 						{
 							if(mapReader.equals("q"))
 							{
-								mapArray[x][y]=new Tile(x*16,y*16,Color.RED);
+								//mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.RED);
+								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.RED);
 							}
 							else if(mapReader.equals("w"))
 							{
-								mapArray[x][y]=new Tile(x*16,y*16,Color.GREEN);
+								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.GREEN);
 							}
+							
 						}
 						x++;
 					

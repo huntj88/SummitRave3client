@@ -6,7 +6,7 @@ public class Tile {
 	
 	int x;
 	int y;
-	Color c;
+	Color c;	
 	public Tile(int x, int y, Color c)
 	{
 		this.x=x;
@@ -17,7 +17,7 @@ public class Tile {
 	public void draw(Graphics g,int pX, int pY)
 	{
 		g.setColor(c);
-		g.fillRect(x-pX+180, y-pY+180, 16, 16);
+		g.fillRect(x-pX+VariablesFinal.SIZEX_OF_SCREEN/2, y-pY+VariablesFinal.SIZEY_OF_SCREEN/2, 16, 16);
 	}
 
 }
