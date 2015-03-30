@@ -35,7 +35,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		hostAddress = InetAddress.getByName(host);
 		//new ListenThread().start();
 		
-		String outString ="Login "+username;
+		String outString ="Client Login "+username;
 	    buffer = outString.getBytes();
 	    out = new DatagramPacket(buffer, buffer.length, hostAddress, port);
 	    socket.send(out);
