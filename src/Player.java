@@ -129,7 +129,7 @@ public class Player{
 		if (health>0)
 		{
 			health-=damage;
-			return "Health "+userName+" "+health;
+			return "Client Health "+userName+" "+health;
 		}
 		else 
 		{
@@ -156,7 +156,7 @@ public class Player{
 		if (!fullHealth())
 		{
 			health+=healVal;
-			return "Health "+userName+" "+health;
+			return "Client Health "+userName+" "+health;
 		}
 		return"";
 	}
