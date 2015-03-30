@@ -13,10 +13,16 @@ public class ListenThread extends Thread{
     ArrayList<String[]> updates = new ArrayList<String[]>();
     String username;
     
-	public ListenThread(String username) throws SocketException
+	public ListenThread(String username)
 	{
 		this.username=username;
-		socket = new DatagramSocket(PORT);
+		try {
+			socket = new DatagramSocket(PORT);
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(0);
+		}
 		packet = new DatagramPacket(buf, buf.length);
 		start();
 	}
