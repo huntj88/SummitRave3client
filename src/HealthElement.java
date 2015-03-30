@@ -8,7 +8,7 @@ public class HealthElement extends GUIElement {
 	private Color c = Color.GREEN;
 	private int visibleHealth = width;
 	private int tempHealth = 0;
-	public final int DELAY = 25;
+	public final int DELAY = 14;
 	Timer timer;
 	private Player player;
 	
