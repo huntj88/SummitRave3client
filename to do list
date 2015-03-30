@@ -1,0 +1,9 @@
+add character sprites
+add monsters - implement server side
+add inventory - pickup packet also needed(make item disapear when they pick it up) also attributes packet for items equiped
+add menu
+add items
+add skills
+add chat system - chat packet needed
+remove name over other peoples head (or at least make it transparent) and make it only appear when the player speaks or when the player is clicked
+remove health over other peoples head unless player is being attacked
