@@ -80,15 +80,15 @@ public class LoadMap{
 							if(mapReader.equals("q"))
 							{
 								//mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.RED);
-								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.RED);
+								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.RED,true);
 							}
 							else if(mapReader.equals("w"))
 							{
-								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.GREEN);
+								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.GREEN,false);
 							}
 							else if(mapReader.equals("0"))
 							{
-								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.BLUE);
+								mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.BLUE,false);
 							}
 							
 						}

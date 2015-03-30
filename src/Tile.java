@@ -6,9 +6,11 @@ public class Tile {
 	
 	int x;
 	int y;
-	Color c;	
-	public Tile(int x, int y, Color c)
+	Color c;
+	boolean canCollide;
+	public Tile(int x, int y, Color c, boolean canCollide)
 	{
+		this.canCollide=canCollide;
 		this.x=x;
 		this.y=y;
 		this.c=c;
@@ -35,6 +37,11 @@ public class Tile {
 	public int getY()
 	{
 		return y;
+	}
+	
+	public boolean getCollide()
+	{
+		return canCollide;
 	}
 
 }

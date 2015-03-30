@@ -36,7 +36,7 @@ public class World {
 		
 		int startArrayX=Math.abs((map[0][0].getX()-player.getX())/VariablesFinal.SIZE_OF_TILE)-1; 
 		int startArrayY=Math.abs((map[0][0].getY()-player.getY())/VariablesFinal.SIZE_OF_TILE);
-		if(map[startArrayX][startArrayY]!=null)
+		if(map[startArrayX][startArrayY]!=null&&map[startArrayX][startArrayY].getCollide())
 		{
 			if(direction==4)
 				if(player.getX()-player.getSpeed()<map[startArrayX][startArrayY].getX()+VariablesFinal.SIZE_OF_TILE)
@@ -44,7 +44,7 @@ public class World {
 					return false;
 				}
 		}
-		else if(map[startArrayX+2][startArrayY]!=null)
+		else if(map[startArrayX+2][startArrayY]!=null&&map[startArrayX+2][startArrayY].getCollide())
 		{
 			if(direction==2)
 				if(player.getX()+player.getSpeed()+VariablesFinal.SIZE_OF_TILE>map[startArrayX+2][startArrayY].getX())
@@ -60,7 +60,7 @@ public class World {
 		startArrayX=Math.abs((map[0][0].getX()-player.getX())/VariablesFinal.SIZE_OF_TILE); 
 		startArrayY=Math.abs((map[0][0].getY()-player.getY())/VariablesFinal.SIZE_OF_TILE)-1;
 		
-		if(map[startArrayX][startArrayY]!=null)
+		if(map[startArrayX][startArrayY]!=null&&map[startArrayX][startArrayY].getCollide())
 		{
 			if(direction==1)
 				if(player.getY()-player.getSpeed()<map[startArrayX][startArrayY].getY()+VariablesFinal.SIZE_OF_TILE)
@@ -68,7 +68,7 @@ public class World {
 					return false;
 				}
 		}
-		else if(map[startArrayX][startArrayY+2]!=null)
+		else if(map[startArrayX][startArrayY+2]!=null&&map[startArrayX][startArrayY+2].getCollide())
 		{
 			if(direction==3)
 				if(player.getY()+player.getSpeed()+VariablesFinal.SIZE_OF_TILE>map[startArrayX][startArrayY+2].getY())
