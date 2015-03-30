@@ -81,54 +81,75 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 				{
 					for(String[] splitData : updates)
 					{
+						
+						boolean serverCommand=false;
+						for(String server : splitData)
+						{
+							if(server.contains("Server"))
+								serverCommand=true;
+						}
 						//String[] splitData=data.split(" ");
 						
 						//if the user is someone else update that user on this clients screen, else just ignore. no point in the client updating itself with its own data
 						//if(splitData.length>1&&!splitData[1].equals(player.getUserName()))
 						{
 							
-							if(splitData[0].equals("Login"))
+							if(splitData[0].equals("Login")&&!serverCommand)
 					    	{
 					    		login(splitData[1]);
 					    	}
-							else if(splitData[0].equals("Logout"))
+							else if(splitData[0].equals("Logout")&&!serverCommand)
 							{
 								logout(splitData[1]);
 							}
 							else if(splitData[0].equals("Move"))
 							{
-								
-								boolean loggedIn=false;
-								for(Player test:mp)
+								if(serverCommand&&splitData[1].equals(player.getUserName()))
 								{
-									if(splitData[1].equals(test.getUserName()))
-									{
-										test.setX(Integer.parseInt(splitData[2]));
-										test.setY(Integer.parseInt(splitData[3]));
-										loggedIn=true;
-										break;
-									}
-									
+									player.setX(Integer.parseInt(splitData[2]));
+									player.setY(Integer.parseInt(splitData[3]));
 								}
-								if(loggedIn==false)
-									login(splitData[1]);
+								else
+								{
+									boolean loggedIn=false;
+									for(Player test:mp)
+									{
+										if(splitData[1].equals(test.getUserName()))
+										{
+											test.setX(Integer.parseInt(splitData[2]));
+											test.setY(Integer.parseInt(splitData[3]));
+											loggedIn=true;
+											break;
+										}
+									
+									}
+									if(loggedIn==false)
+										login(splitData[1]);
+								}
 							}
 							else if(splitData[0].equals("Health"))
 							{
-								
-								boolean loggedIn=false;
-								for(Player test:mp)
+							
+								if(serverCommand&&splitData[1].equals(player.getUserName()))
 								{
-									if(splitData[1].equals(test.getUserName()))
-									{
-										test.setHealth(Integer.parseInt(splitData[2]));
-										loggedIn=true;
-										break;
-									}
-									
+									player.setHealth(Integer.parseInt(splitData[2]));
 								}
-								if(loggedIn==false)
-									login(splitData[1]);
+								else
+								{
+									boolean loggedIn=false;
+									for(Player test:mp)
+									{
+										if(splitData[1].equals(test.getUserName()))
+										{
+											test.setHealth(Integer.parseInt(splitData[2]));
+											loggedIn=true;
+											break;
+										}
+									
+									}
+									if(loggedIn==false)
+										login(splitData[1]);
+								}
 							}
 							//System.out.println(mp.size());
 						}
