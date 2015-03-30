@@ -87,13 +87,13 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 						//if(splitData.length>1&&!splitData[1].equals(player.getUserName()))
 						{
 							
-							if(splitData[0].equals("Login"))
+							if(splitData[1].equals("Login"))
 					    	{
-					    		login(splitData[1]);
+					    		login(splitData[2]);
 					    	}
-							else if(splitData[0].equals("Logout"))
+							else if(splitData[1].equals("Logout"))
 							{
-								logout(splitData[1]);
+								logout(splitData[2]);
 							}
 							else if(splitData[1].equals("Move"))
 							{
