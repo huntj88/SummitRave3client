@@ -13,7 +13,7 @@ public class World {
 		map=LoadMap.getMap("test");
 	}
 	
-	public void drawWorld(int pX, int pY,Graphics g,ArrayList<Player> mp)
+	public void drawWorld(int pX, int pY,Graphics g,ArrayList<Player> mp, GameClient gameClient)
 	{
 		//tile1.draw(g, pX, pY);
 		for(int x=0; x<map.length;x++)
@@ -21,7 +21,7 @@ public class World {
 			for(int y=0; y<map[0].length;y++)
 			{
 				if(map[x][y]!=null)
-					map[x][y].draw(g, pX,pY);
+					map[x][y].draw(g, pX,pY,gameClient);
 			}
 		}
 		

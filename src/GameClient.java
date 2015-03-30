@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -13,6 +14,7 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 
@@ -30,6 +32,9 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	private ListenThread listenToServer;
 
 	public GameClient(String host, int port, String username) throws IOException {
+		
+		VariablesFinal.imageTiles= ImageIO.read(new File("res/roguelikeSheet_transparent.png"));
+		
 		player = new Player(0, 0, username);
 		
 		hostAddress = InetAddress.getByName(host);
@@ -59,10 +64,10 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
-		g.setColor(Color.LIGHT_GRAY);
+		g.setColor(Color.GRAY);
 		g.fillRect(0, 0, VariablesFinal.SIZEX_OF_SCREEN, VariablesFinal.SIZEY_OF_SCREEN);
 
-		world.drawWorld(player.getX(), player.getY(), g, mp);
+		world.drawWorld(player.getX(), player.getY(), g, mp,this);
 		
 		g.setColor(Color.BLACK);
 		player.drawPlayer(g);

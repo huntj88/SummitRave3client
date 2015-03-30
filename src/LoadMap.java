@@ -77,18 +77,26 @@ public class LoadMap{
 						mapReader= scan2.next();
 						if(!mapReader.equals("."))
 						{
-							if(mapReader.equals("q"))
+							if(mapReader.equals("g"))
 							{
 								//mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.RED);
-								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,Color.RED,true);
+								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,false,17*5,0);
 							}
-							else if(mapReader.equals("w"))
+							else if(mapReader.equals("d"))
 							{
-								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,Color.GREEN,false);
+								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,false,17*6,0);
 							}
 							else if(mapReader.equals("0"))
 							{
-								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,Color.BLUE,false);
+								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,false,9*17,0);
+							}
+							else if(mapReader.equals("w"))
+							{
+								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,true,5*17,0*17,53*17,23*17);
+							}
+							else if(mapReader.equals("f"))
+							{
+								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,true,3*17,7*17);
 							}
 							
 						}
