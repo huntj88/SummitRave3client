@@ -21,7 +21,7 @@ public class Player{
 	private int playerState = 1;
 	private boolean sprinting =false;
 	private int speed = 4;
-	private int widthOfPlayer=16;
+	private int widthOfPlayer=VariablesFinal.SIZE_OF_TILE;
 	
 	public Player(int x, int y, String userName)
 	{
