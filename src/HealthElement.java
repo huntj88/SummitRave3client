@@ -13,7 +13,7 @@ public class HealthElement extends GUIElement {
 	private Player player;
 	
 	public HealthElement(Player player) {
-		super(5, 5, player.getHealth(), 10, "Health Bar");
+		super(5, 5, player.getHealth()*2, 10, "Health Bar");
 		this.player=player;
 		timer = new Timer();
 		timer.schedule(new UpdateYellowTask(), 0, DELAY);
