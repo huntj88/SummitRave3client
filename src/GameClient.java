@@ -301,6 +301,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
+		GUI.menu.checkIfButtonsClicked(e.getX(), e.getY());
 	}
 
 	@Override

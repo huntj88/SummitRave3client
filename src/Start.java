@@ -19,6 +19,7 @@ public class Start implements ActionListener{
 		int port = 4000;
 		String ip="127.0.0.1";
 		JFrame f = new JFrame("run");
+		
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -42,8 +43,8 @@ public class Start implements ActionListener{
 
 		     public void actionPerformed(ActionEvent e){
 		         //Check login stuff here... 
-
 		    	 f.setVisible(false);
+		    	 //f
 		         //with maybe something like this?
 		    	 String username=user.getText();
 		         char[] sPass = pass.getPassword();
@@ -51,7 +52,10 @@ public class Start implements ActionListener{
 		         f.remove(login);
 		         f.remove(user);
 		         f.remove(pass);
-		         f.setSize(VariablesFinal.SIZEX_OF_SCREEN,VariablesFinal.SIZEY_OF_SCREEN);
+		         JFrame gameFrame = new JFrame();
+		         gameFrame.setUndecorated(true);
+		         gameFrame.setSize(VariablesFinal.SIZEX_OF_SCREEN,VariablesFinal.SIZEY_OF_SCREEN);
+		        
 		         
 		 		GameClient g = null;
 				try {
@@ -60,8 +64,8 @@ public class Start implements ActionListener{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-		 		f.add(g);
-		        f.setVisible(true);
+				gameFrame.add(g);
+				gameFrame.setVisible(true);
 		     }
 		});
 		user.addActionListener(loginAction);

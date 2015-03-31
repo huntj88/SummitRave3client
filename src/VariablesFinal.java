@@ -1,11 +1,12 @@
 
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
 
 public class VariablesFinal {
 
-	public static int SIZEX_OF_SCREEN=1920/2;
-	public static int SIZEY_OF_SCREEN=1080/2;
+	public static int SIZEX_OF_SCREEN=(int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+	public static int SIZEY_OF_SCREEN=(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	
 	public static int SIZE_OF_TILE=32;
 	
