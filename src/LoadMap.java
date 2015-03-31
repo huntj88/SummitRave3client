@@ -33,7 +33,7 @@ public class LoadMap{
 					mapReader= scan2.next();
 					if(!mapReader.equals("."))
 					{
-						if(mapReader.equals("0"))
+						if(mapReader.equals("00"))
 						{
 							//this is the center of the map;
 							startX=x;
@@ -77,24 +77,24 @@ public class LoadMap{
 						mapReader= scan2.next();
 						if(!mapReader.equals("."))
 						{
-							if(mapReader.equals("g")) //grass
+							if(mapReader.equals("gg")) //grass
 							{
 								//mapArray[x][y]=new Tile((x-startX)*16,(y-startY)*16,Color.RED);
 								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,false,17*5,0);
 							}
-							else if(mapReader.equals("d")) //dirt
+							else if(mapReader.equals("dd")) //dirt
 							{
 								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,false,17*6,0);
 							}
-							else if(mapReader.equals("0")) //spawn
+							else if(mapReader.equals("00")) //spawn
 							{
 								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,false,9*17,0);
 							}
-							else if(mapReader.equals("w")) //grass with horizontal mid fence
+							else if(mapReader.equals("ww")) //grass with horizontal mid fence
 							{
 								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,true,5*17,0*17,53*17,23*17);
 							}
-							else if(mapReader.equals("f")) //red flowers
+							else if(mapReader.equals("ff")) //red flowers
 							{
 								mapArray[x][y]=new Tile((x-startX)*VariablesFinal.SIZE_OF_TILE,(y-startY)*VariablesFinal.SIZE_OF_TILE,false,3*17,7*17);
 							}

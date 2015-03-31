@@ -35,7 +35,7 @@ public class Player{
 	{
 		int stringWidth=g.getFontMetrics().stringWidth(userName);
 		g.setColor(Color.BLACK);
-		g.fillRect(drawDisplacementX, drawDisplacementY-2, widthOfPlayer, widthOfPlayer+2);
+		g.fillRect(drawDisplacementX, drawDisplacementY, widthOfPlayer, widthOfPlayer);
 		g.fillRect(drawDisplacementX-stringWidth/2+widthOfPlayer/2, drawDisplacementY-20, g.getFontMetrics().stringWidth(userName), 10);
 		g.setColor(Color.WHITE);
 		g.drawString(userName,drawDisplacementX-stringWidth/2+widthOfPlayer/2, drawDisplacementY-10);
