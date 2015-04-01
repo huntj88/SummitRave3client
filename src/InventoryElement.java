@@ -49,6 +49,7 @@ public class InventoryElement extends GUIElement{
 	
 	public void checkIfItemGrabbed(int mouseX, int mouseY)
 	{
+		idGrabbed=0;
 		this.mouseX=mouseX;
 		this.mouseY=mouseY;
 		clicked=true;

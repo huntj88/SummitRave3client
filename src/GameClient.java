@@ -38,7 +38,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	public GameClient(String username) throws IOException {
 		
 		VariablesFinal.imageTiles= ImageIO.read(new File("res/roguelikeSheet_transparent.png"));
-		VariablesFinal.imageItems= ImageIO.read(new File("res/black_sword.png"));
+		VariablesFinal.imageItems= ImageIO.read(new File("res/items.png"));
 		
 		player = new Player(0, 0, username);
 		

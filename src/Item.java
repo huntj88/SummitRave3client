@@ -21,12 +21,12 @@ public class Item {
 		int down=i/5*width/5;
 		int sideways=i%5*width/5;
 		//g.drawImage(VariablesFinal.imageItems, sideways+x, down+y, game);
-		g.drawImage(VariablesFinal.imageItems, sideways+x, down+y, sideways+x+width/5, down+y+width/5, 0, 0, 32, 32, game);
+		g.drawImage(VariablesFinal.imageItems, sideways+x, down+y, sideways+x+width/5, down+y+width/5, imageX, imageY, imageX+VariablesFinal.SIZE_OF_TILE, imageY+VariablesFinal.SIZE_OF_TILE, game);
 	}
 	
 	public void draw(Graphics g, int i, GameClient game, int x, int y) {
 		//g.drawImage(VariablesFinal.imageItems, sideways+x, down+y, game);
-		g.drawImage(VariablesFinal.imageItems, x-VariablesFinal.SIZE_OF_TILE/2, y-VariablesFinal.SIZE_OF_TILE/2, x+VariablesFinal.SIZE_OF_TILE, y+VariablesFinal.SIZE_OF_TILE, 0, 0, 32, 32, game);
+		g.drawImage(VariablesFinal.imageItems, x-VariablesFinal.SIZE_OF_TILE/2, y-VariablesFinal.SIZE_OF_TILE/2, x+VariablesFinal.SIZE_OF_TILE, y+VariablesFinal.SIZE_OF_TILE, imageX, imageY, imageX+VariablesFinal.SIZE_OF_TILE, imageY+VariablesFinal.SIZE_OF_TILE, game);
 	}
 	
 	public int getID()

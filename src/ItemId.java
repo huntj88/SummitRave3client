@@ -9,7 +9,7 @@ public class ItemId {
 	public static void buildItemID()
 	{
 		items[0]=null;	
-		items[1]=new Sword(0,"black Sword",0,0,5);
+		items[1]=new MeleeWeapon(0,"black Sword",0,256,5);
 	}
 	
 	public static void DrawItemInventory(Graphics g,int spot, int id, GameClient game, int x, int y, int width, int height)
