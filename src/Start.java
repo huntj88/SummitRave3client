@@ -13,11 +13,15 @@ import javax.swing.JTextField;
 
 public class Start implements ActionListener{
 
+	
+	static int port = 4000;
+	static String ip="127.0.0.1";
+	static String username;
+	
 	public static void main(String[] args) {
 	
 		
-		int port = 4000;
-		String ip="127.0.0.1";
+		
 		JFrame f = new JFrame("run");
 		
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,7 +50,7 @@ public class Start implements ActionListener{
 		    	 f.setVisible(false);
 		    	 //f
 		         //with maybe something like this?
-		    	 String username=user.getText();
+		    	 username=user.getText();
 		         char[] sPass = pass.getPassword();
 		         //Then compare with some other string/data you already have saved somewhere...
 		         f.remove(login);
@@ -59,7 +63,7 @@ public class Start implements ActionListener{
 		         
 		 		GameClient g = null;
 				try {
-					g = new GameClient(ip, port,username);
+					g = new GameClient(username);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -99,15 +103,6 @@ public class Start implements ActionListener{
 			
 			@Override
 			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("closing");
-				String username=user.getText();
-				try {
-					new Logout(ip, port,username);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			}
 			
 			@Override

@@ -31,18 +31,18 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	private World world;
 	private ListenThread listenToServer;
 
-	public GameClient(String host, int port, String username) throws IOException {
+	public GameClient(String username) throws IOException {
 		
 		VariablesFinal.imageTiles= ImageIO.read(new File("res/roguelikeSheet_transparent.png"));
 		
 		player = new Player(0, 0, username);
 		
-		hostAddress = InetAddress.getByName(host);
+		hostAddress = InetAddress.getByName(Start.ip);
 		//new ListenThread().start();
 		
 		String outString ="Login "+username;
 	    buffer = outString.getBytes();
-	    out = new DatagramPacket(buffer, buffer.length, hostAddress, port);
+	    out = new DatagramPacket(buffer, buffer.length, hostAddress, Start.port);
 	    socket.send(out);
 			
 		setFocusable(true);

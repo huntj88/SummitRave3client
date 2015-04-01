@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 
 
 
@@ -10,6 +12,12 @@ public class ButtonQuit extends Button{
 
 	@Override
 	public void buttonFunction() {
+		try {
+			new Logout(Start.ip, Start.port,Start.username);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.exit(0);
 	}
 
