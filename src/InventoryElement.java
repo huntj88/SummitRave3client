@@ -14,9 +14,18 @@ public class InventoryElement extends GUIElement{
 	}
 
 	public void draw(Graphics g,GameClient game) {
-		g.setColor(new Color(128,128,128,230));
+		g.setColor(new Color(128,128,128,158));
 		g.fillRect(x, y, width, height);
-		g.drawImage(VariablesFinal.imageItems, x, y, game);
+		
+		int[] tempInventory = Player.getInventory();
+		for(int i = 0; i <24;i++)
+		{
+			if(tempInventory[i]!=0)
+			{
+				ItemId.DrawItemInventory(g, i,tempInventory[i], game, x, y);
+			}
+			
+		}
 	}
 	
 	public static void switchMenuState()
@@ -28,5 +37,6 @@ public class InventoryElement extends GUIElement{
 	{
 		return showMenu;
 	}
+	
 
 }

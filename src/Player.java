@@ -17,10 +17,15 @@ public class Player{
 	private boolean sprinting =false;
 	private int speed = 2;
 	private int widthOfPlayer=VariablesFinal.SIZE_OF_TILE;
-	private int[] inventory;
+	private static int[] inventory = new int[24];
 	
 	public Player(int x, int y, String userName)
 	{
+		inventory[0]=1;
+		inventory[1]=1;
+		inventory[4]=1;
+		inventory[5]=1;
+		inventory[10]=1;
 		signedIn=true;
 		this.x=x;
 		this.y=y;
@@ -157,7 +162,7 @@ public class Player{
 		return"";
 	}
 	
-	public int[] getInventory()
+	public static int[] getInventory()
 	{
 		return inventory;
 	}

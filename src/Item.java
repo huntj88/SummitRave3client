@@ -16,6 +16,16 @@ public class Item {
 		this.imageY=imageY;
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics g, int i, GameClient game, int x, int y) {
+		
+		int down=i/4*32;
+		int sideways=i%4*32;
+		g.drawImage(VariablesFinal.imageItems, sideways+x, down+y, game);
+		//System.out.println(i);
+	}
+	
+	public int getID()
+	{
+		return id;
 	}
 }
