@@ -12,9 +12,14 @@ public class ItemId {
 		items[1]=new Sword(0,"black Sword",0,0,5);
 	}
 	
-	public static void DrawItemInventory(Graphics g,int i, int id, GameClient game, int x, int y)
+	public static void DrawItemInventory(Graphics g,int spot, int id, GameClient game, int x, int y, int width, int height)
 	{
-		items[id].draw(g,i,game,x,y);
+		items[id].draw(g,spot,game,x,y,width, height);
+	}
+	
+	public static void DrawItemMouse(Graphics g,int spot, int id, GameClient game, int mouseX,int mouseY)
+	{
+		items[id].draw(g,spot,game,mouseX,mouseY);
 	}
 
 }

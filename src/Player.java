@@ -17,15 +17,35 @@ public class Player{
 	private boolean sprinting =false;
 	private int speed = 2;
 	private int widthOfPlayer=VariablesFinal.SIZE_OF_TILE;
-	private static int[] inventory = new int[24];
+	private static int[] inventory = new int[25];
 	
 	public Player(int x, int y, String userName)
 	{
-		inventory[0]=1;
+		//inventory[0]=1;
 		inventory[1]=1;
-		inventory[4]=1;
+		//inventory[2]=1;
+		inventory[3]=1;
+		//inventory[4]=1;
 		inventory[5]=1;
-		inventory[10]=1;
+		inventory[6]=1;
+		//inventory[7]=1;
+		//inventory[8]=1;
+		inventory[9]=1;
+		//inventory[10]=1;
+		inventory[11]=1;
+		//inventory[12]=1;
+		//inventory[13]=1;
+		inventory[14]=1;
+		inventory[15]=1;
+		//inventory[16]=1;
+		//inventory[17]=1;
+		inventory[18]=1;
+		//inventory[19]=1;
+		//inventory[20]=1;
+		inventory[21]=1;
+		//inventory[22]=1;
+		inventory[23]=1;
+		//inventory[24]=1;
 		signedIn=true;
 		this.x=x;
 		this.y=y;
@@ -167,7 +187,7 @@ public class Player{
 		return inventory;
 	}
 	
-	public void changeInventory(int location, int itemId)
+	public static void changeInventory(int location, int itemId)
 	{
 		inventory[location]=itemId;
 	}

@@ -337,17 +337,17 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
+		GUI.inventory.checkIfItemGrabbed(e.getX(), e.getY());
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// grabbed = false;
+		GUI.inventory.released(e.getX(),e.getY());
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-
+		GUI.inventory.getMouseWhileDragged(e.getX(), e.getY());
 	}
 
 	@Override

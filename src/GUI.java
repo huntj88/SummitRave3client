@@ -19,8 +19,9 @@ public class GUI {
 	public static void drawEverything(Graphics g,GameClient game) //stuff thats always on the screen
 	{
 		healthBar.draw(g);
-		drawMenu(g);
 		drawInventory(g, game);
+		drawMenu(g);
+		
 	}
 	
 	public static void drawMenu(Graphics g)
