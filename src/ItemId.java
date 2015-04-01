@@ -15,7 +15,6 @@ public class ItemId {
 	public static void DrawItemInventory(Graphics g,int i, int id, GameClient game, int x, int y)
 	{
 		items[id].draw(g,i,game,x,y);
-		System.out.println(i);
 	}
 
 }

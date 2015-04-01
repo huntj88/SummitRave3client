@@ -21,7 +21,6 @@ public class Item {
 		int down=i/4*32;
 		int sideways=i%4*32;
 		g.drawImage(VariablesFinal.imageItems, sideways+x, down+y, game);
-		//System.out.println(i);
 	}
 	
 	public int getID()

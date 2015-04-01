@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 
 
@@ -33,7 +32,7 @@ public class InventoryElement extends GUIElement{
 		showMenu=!showMenu;
 	}
 	
-	public boolean getMenuState()
+	public static boolean getMenuState()
 	{
 		return showMenu;
 	}
