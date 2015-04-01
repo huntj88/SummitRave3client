@@ -38,6 +38,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	public GameClient(String username) throws IOException {
 		
 		VariablesFinal.imageTiles= ImageIO.read(new File("res/roguelikeSheet_transparent.png"));
+		VariablesFinal.imageItems= ImageIO.read(new File("res/black_sword.png"));
 		
 		player = new Player(0, 0, username);
 		
@@ -78,7 +79,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		g.setColor(Color.BLACK);
 		player.drawPlayer(g);
 		
-		GUI.drawEverything(g);
+		GUI.drawEverything(g,this);
 	}
 
 	@Override
@@ -273,6 +274,10 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {		
 			MenuElement.switchMenuState();
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_I) {		
+			InventoryElement.switchMenuState();
 		}
 
 		try {

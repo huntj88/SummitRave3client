@@ -11,5 +11,6 @@ public class VariablesFinal {
 	public static int SIZE_OF_TILE=32;
 	
 	public static BufferedImage imageTiles =  null;
+	public static BufferedImage imageItems =  null;
 	
 }

@@ -5,11 +5,6 @@ import java.io.Serializable;
 
 public class Player{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	private int drawDisplacementX = VariablesFinal.SIZEX_OF_SCREEN/2;
 	private int drawDisplacementY = VariablesFinal.SIZEY_OF_SCREEN/2;
 	
@@ -22,6 +17,7 @@ public class Player{
 	private boolean sprinting =false;
 	private int speed = 2;
 	private int widthOfPlayer=VariablesFinal.SIZE_OF_TILE;
+	private int[] inventory;
 	
 	public Player(int x, int y, String userName)
 	{
@@ -161,6 +157,16 @@ public class Player{
 		return"";
 	}
 	
+	public int[] getInventory()
+	{
+		return inventory;
+	}
+	
+	public void changeInventory(int location, int itemId)
+	{
+		inventory[location]=itemId;
+	}
+	
 	public void move(boolean left,boolean right,boolean up,boolean down, World world)
 	{
 		if(left)
@@ -201,25 +207,6 @@ public class Player{
 			if(world.isValidMove(this, 3))
 			y+=speed;
 		}
-	}
-	
-	public void moveLeft()
-	{
-		x-=speed;
-	}
-	public void moveRight()
-	{
-		x+=speed;
-	}
-	
-	public void moveUp()
-	{
-		y-=speed;
-	}
-	
-	public void moveDown()
-	{
-		y+=speed;
 	}
 	
 	public int getX()

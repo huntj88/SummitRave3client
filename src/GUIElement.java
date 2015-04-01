@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 
 
 
@@ -17,6 +19,7 @@ public abstract class GUIElement {
 		this.height=height;
 		this.width=width;
 	}
+	
 	
 
 }
