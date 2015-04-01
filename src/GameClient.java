@@ -30,6 +30,10 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	private ArrayList<Player> mp = new ArrayList<Player>();
 	private World world;
 	private ListenThread listenToServer;
+	private boolean left=false;
+	private boolean right=false;
+	private boolean up=false;
+	private boolean down=false;
 
 	public GameClient(String username) throws IOException {
 		
@@ -68,6 +72,8 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		g.fillRect(0, 0, VariablesFinal.SIZEX_OF_SCREEN, VariablesFinal.SIZEY_OF_SCREEN);
 
 		world.drawWorld(player.getX(), player.getY(), g, mp,this);
+		
+		player.move(left, right, up, down,world);
 		
 		g.setColor(Color.BLACK);
 		player.drawPlayer(g);
@@ -225,32 +231,28 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		String packetCreate="";
 		
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			if(world.isValidMove(player,2))
-			{
-				player.moveRight();
+				left=false;
+				right=true;
+				//player.moveRight();
 				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
-			}
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			if(world.isValidMove(player,4))
-			{
-				player.moveLeft();
+				left=true;
+				right=false;
+				//player.moveLeft();
 				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
-			}
 
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			if(world.isValidMove(player,1))
-			{
-				player.moveUp();
+				up=true;
+				down=false;
+				//player.moveUp();
 				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
-			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			if(world.isValidMove(player,3))
-			{
-				player.moveDown();
+				down=true;
+				up=false;
+				//player.moveDown();
 				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
-			}
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -286,6 +288,20 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				right=false;;
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				left=false;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+				up=false;
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				down=false;
+		}
+		
+		
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			
 			player.stopSprint();;

@@ -20,7 +20,7 @@ public class Player{
 	private int health=100;
 	private int playerState = 1;
 	private boolean sprinting =false;
-	private int speed = 4;
+	private int speed = 2;
 	private int widthOfPlayer=VariablesFinal.SIZE_OF_TILE;
 	
 	public Player(int x, int y, String userName)
@@ -159,6 +159,48 @@ public class Player{
 			return "Health "+userName+" "+health;
 		}
 		return"";
+	}
+	
+	public void move(boolean left,boolean right,boolean up,boolean down, World world)
+	{
+		if(left)
+		{
+			/*if(up)
+			{
+			}
+			else if(down)
+			{
+			}
+			else*/
+			{
+				if(world.isValidMove(this, 4))
+				x-=speed;
+			}
+		}
+		else if(right)
+		{
+			/*if(up)
+			{
+			}
+			else if(down)
+			{
+			}
+			else*/
+			{
+				if(world.isValidMove(this, 2))
+				x+=speed;
+			}
+		}
+		else if(up)
+		{
+			if(world.isValidMove(this, 1))
+			y-=speed;
+		}
+		else if(down)
+		{
+			if(world.isValidMove(this, 3))
+			y+=speed;
+		}
 	}
 	
 	public void moveLeft()
