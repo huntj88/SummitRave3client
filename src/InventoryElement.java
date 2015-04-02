@@ -13,7 +13,7 @@ public class InventoryElement extends GUIElement{
 	
 	public InventoryElement(Player player) 
 	{
-		super(VariablesFinal.SIZEX_OF_SCREEN-VariablesFinal.SIZEX_OF_SCREEN/5, 0+VariablesFinal.SIZEY_OF_SCREEN/2, VariablesFinal.SIZEX_OF_SCREEN/5, VariablesFinal.SIZEY_OF_SCREEN-VariablesFinal.SIZEY_OF_SCREEN/20*13, "Inventory");
+		super(VariablesFinal.SIZEX_OF_SCREEN-VariablesFinal.SIZEX_OF_SCREEN/5, VariablesFinal.SIZEY_OF_SCREEN/2, VariablesFinal.SIZEX_OF_SCREEN/5, VariablesFinal.SIZEY_OF_SCREEN-VariablesFinal.SIZEY_OF_SCREEN/20*13, "Inventory");
 		
 	}
 
@@ -21,10 +21,17 @@ public class InventoryElement extends GUIElement{
 		g.setColor(new Color(128,128,128,158));
 		g.fillRect(x, y, width, height);
 		
+		g.setColor(Color.DARK_GRAY);
+		for(int space=1;space<5;space++)
+		g.drawLine(x+space*width/5, y, x+space*width/5, y+height);
+		
+		for(int space=1;space<5;space++)
+			g.drawLine(x, y+space*width/5, x+width, y+space*width/5);
+		
 		
 		for(int i = 0; i <tempInventory.length;i++)
 		{
-			if(clicked&&i==spot)
+			if(clicked&&i==spot&&mouseX>=x)
 			{
 				if(tempInventory[i]!=0)
 				{
@@ -79,7 +86,7 @@ public class InventoryElement extends GUIElement{
 		int spotDropped = 5*mouseYSpot+mouseXSpot;
 		clicked=false;
 
-		if(spotDropped>=0&&spotDropped<25)
+		if(spotDropped>=0&&spotDropped<tempInventory.length&&mouseX>=x)
 		{
 			int tempSwitch=tempInventory[spotDropped];
 			Player.changeInventory(spotDropped, idGrabbed);

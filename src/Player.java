@@ -189,6 +189,7 @@ public class Player{
 	
 	public static void changeInventory(int location, int itemId)
 	{
+		if(location>=0&&location<inventory.length)
 		inventory[location]=itemId;
 	}
 	
