@@ -13,7 +13,7 @@ public class InventoryElement extends GUIElement{
 	
 	public InventoryElement(Player player) 
 	{
-		super(VariablesFinal.SIZEX_OF_SCREEN-VariablesFinal.SIZEX_OF_SCREEN/5, 0+VariablesFinal.SIZEY_OF_SCREEN/5, VariablesFinal.SIZEX_OF_SCREEN/5, VariablesFinal.SIZEY_OF_SCREEN-VariablesFinal.SIZEY_OF_SCREEN/5*2+5, "Inventory");
+		super(VariablesFinal.SIZEX_OF_SCREEN-VariablesFinal.SIZEX_OF_SCREEN/5, 0+VariablesFinal.SIZEY_OF_SCREEN/2, VariablesFinal.SIZEX_OF_SCREEN/5, VariablesFinal.SIZEY_OF_SCREEN-VariablesFinal.SIZEY_OF_SCREEN/20*13, "Inventory");
 		
 	}
 
@@ -26,12 +26,15 @@ public class InventoryElement extends GUIElement{
 		{
 			if(clicked&&i==spot)
 			{
+				if(tempInventory[i]!=0)
+				{
 				ItemId.DrawItemMouse(g, i, tempInventory[i], game, mouseX, mouseY);
 				idGrabbed=tempInventory[i];
+				}
 			}
 			else if(tempInventory[i]!=0)
 			{
-				ItemId.DrawItemInventory(g, i,tempInventory[i], game, x, y+VariablesFinal.SIZEY_OF_SCREEN/4,width,height);
+				ItemId.DrawItemInventory(g, i,tempInventory[i], game, x, y,width,height);
 			}
 			
 		}
@@ -54,7 +57,7 @@ public class InventoryElement extends GUIElement{
 		this.mouseY=mouseY;
 		clicked=true;
 		int mouseXSpot=(mouseX-x)/(width/5);
-		int mouseYSpot=(mouseY-y-VariablesFinal.SIZEY_OF_SCREEN/4)/(width/5);
+		int mouseYSpot=(mouseY-y)/(width/5);
 		spot = 5*mouseYSpot+mouseXSpot;
 		
 		
@@ -72,13 +75,16 @@ public class InventoryElement extends GUIElement{
 		this.mouseX=mouseX;
 		this.mouseY=mouseY;
 		int mouseXSpot=(mouseX-x)/(width/5);
-		int mouseYSpot=(mouseY-y-VariablesFinal.SIZEY_OF_SCREEN/4)/(width/5);
+		int mouseYSpot=(mouseY-y)/(width/5);
 		int spotDropped = 5*mouseYSpot+mouseXSpot;
 		clicked=false;
 
-		int tempSwitch=tempInventory[spotDropped];
-		Player.changeInventory(spotDropped, idGrabbed);
-		Player.changeInventory(spot, tempSwitch);
+		if(spotDropped>=0&&spotDropped<25)
+		{
+			int tempSwitch=tempInventory[spotDropped];
+			Player.changeInventory(spotDropped, idGrabbed);
+			Player.changeInventory(spot, tempSwitch);
+		}
 	}
 	
 
