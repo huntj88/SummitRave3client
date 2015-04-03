@@ -27,7 +27,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	private DatagramPacket out;
 	
 	private Player player;
-	private ArrayList<Player> mp = new ArrayList<Player>();
+	private ArrayList<PlayerMP> mp = new ArrayList<PlayerMP>();
 	private World world;
 	private ListenThread listenToServer;
 	private boolean left=false;
@@ -124,7 +124,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 								else
 								{
 									boolean loggedIn=false;
-									for(Player test:mp)
+									for(PlayerMP test:mp)
 									{
 										if(splitData[1].equals(test.getUserName()))
 										{
@@ -149,7 +149,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 								else
 								{
 									boolean loggedIn=false;
-									for(Player test:mp)
+									for(PlayerMP test:mp)
 									{
 										if(splitData[1].equals(test.getUserName()))
 										{
@@ -190,7 +190,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	public void login(String name)
 	{
     		boolean add=true;
-    		for(Player test : mp)
+    		for(PlayerMP test : mp)
     		{
     			if(test.getUserName().equals(name))
     			add=false;
@@ -205,7 +205,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	
 	public void logout(String name)
 	{
-		Iterator<Player> i = mp.iterator();
+		Iterator<PlayerMP> i = mp.iterator();
 		while (i.hasNext())
 		{
 			

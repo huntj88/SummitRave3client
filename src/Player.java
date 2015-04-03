@@ -1,23 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.io.Serializable;
 
 
-public class Player{
+public class Player extends PlayerMP{
 	
-	private int drawDisplacementX = VariablesFinal.SIZEX_OF_SCREEN/2;
-	private int drawDisplacementY = VariablesFinal.SIZEY_OF_SCREEN/2;
-	
-	private int x;
-	private int y;
-	private String userName;
-	private boolean signedIn;
-	private int health=100;
-	private int playerState = 1;
 	private boolean sprinting =false;
-	private int speed = 2;
 	private static int damage;
-	private int widthOfPlayer=VariablesFinal.SIZE_OF_TILE;
 	private static int[] inventory = new int[25];
 	private static int[] equiped = new int[15];
 	
@@ -83,57 +71,13 @@ public class Player{
 		g.setColor(Color.BLACK);
 		g.drawRect(x-pX+drawDisplacementX-20, y-pY+drawDisplacementY-10,50,6);
 	}
-	
-	public void playerStates()
-	{
-		switch(playerState)
-		{
-			case 0: //dead
-			case 1: //normal
-			case 2: //other
-		}
-	}
-	
-	public void signOut()
-	{
-		signedIn=false;
-	}
-	
-	public boolean isSignedIn()
-	{
-		return signedIn;
-	}
-	
-	public String getUserName()
-	{
-		return userName;
-	}
-	
-	public int getHealth()
-	{
-		return health;
-	}
-	
-	public void setHealth(int health)
-	{
-		this.health=health;
-	}
-	
-	public int getSpeed()
-	{
-		return speed;
-	}
-	
-	public void setSpeed(int speed)
-	{
-		this.speed=speed;
-	}
+
 	
 	public void sprint()
 	{
 		if(sprinting==false)
 		{
-			speed=speed*2;
+			setSpeed(getSpeed()*2);
 			sprinting=true;
 		}
 	}
@@ -142,26 +86,31 @@ public class Player{
 	{
 		if(sprinting)
 		{
-			speed=speed/2;
+			setSpeed(getSpeed()/2);
 			sprinting=false;
 		}
 	}
 	
-	public static void setDamage(int damage)
+	public static void setDamage(int dude)
 	{
-		Player.damage=damage;
+		Player.damage=dude;
+	}
+	
+	public static int getDamage()
+	{
+		return damage;
 	}
 	
 	public String Hit(int damage)
 	{
-		if (health>0)
+		if (getHealth()>0)
 		{
-			health-=damage;
-			return "Health "+userName+" "+health;
+			setHealth(getHealth() - damage);
+			return "Health "+getUserName()+" "+getHealth();
 		}
 		else 
 		{
-			playerState = 0;
+			setPlayerState(0);
 			health = 0;
 			return "";
 		}
@@ -171,9 +120,9 @@ public class Player{
 	
 	public boolean fullHealth()
 	{
-		if (health >= 100)
+		if (getHealth() >= 100)
 		{
-			health = 100;
+			setHealth(100);
 			return true;
 		}
 		return false;
@@ -184,7 +133,7 @@ public class Player{
 		if (!fullHealth())
 		{
 			health+=healVal;
-			return "Health "+userName+" "+health;
+			return "Health "+getUserName()+" "+getHealth();
 		}
 		return"";
 	}
@@ -225,7 +174,7 @@ public class Player{
 			else*/
 			{
 				if(world.isValidMove(this, 4))
-				x-=speed;
+				setX(getX() - getSpeed());
 			}
 		}
 		else if(right)
@@ -239,44 +188,20 @@ public class Player{
 			else*/
 			{
 				if(world.isValidMove(this, 2))
-				x+=speed;
+				setX(getX() + getSpeed());
 			}
 		}
 		else if(up)
 		{
 			if(world.isValidMove(this, 1))
-			y-=speed;
+			setY(getY() - getSpeed());
 		}
 		else if(down)
 		{
 			if(world.isValidMove(this, 3))
-			y+=speed;
+			setY(getY() + getSpeed());
 		}
 	}
-	
-	public int getX()
-	{
-		return x;
-	}
-	
-	public int getY()
-	{
-		return y;
-	}
-	
-	public void setX(int x)
-	{
-		this.x=x;
-	}
-	
-	public void setY(int y)
-	{
-		this.y=y;
-	}
-	
-	public String toString()
-	{
-		return userName;
-	}
+
 
 }

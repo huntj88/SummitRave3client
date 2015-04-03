@@ -47,6 +47,9 @@ public class EquipedElement extends GUIElement{
 			}
 			
 		}
+		
+		g.setColor(Color.WHITE);
+		g.drawString("Damage: " + Player.getDamage(), x+width/2-80, y+height-10);
 
 	}
 	

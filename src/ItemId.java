@@ -10,13 +10,13 @@ public class ItemId {
 	{
 		items[0]=null;	
 		items[1]=new MeleeWeapon(0,"Basic Sword",0,224,5);
-		items[2]=new MeleeWeapon(0,"Scimitar",32,224,5);
-		items[3]=new MeleeWeapon(0,"sword 3",64,224,5);
-		items[4]=new MeleeWeapon(0,"Broad sword",96,224,5);
-		items[5]=new MeleeWeapon(0,"Rapier",128,224,5);
-		items[6]=new MeleeWeapon(0,"sword 6",160,224,5);
-		items[7]=new MeleeWeapon(0,"Sword 7",192,224,5);
-		items[8]=new MeleeWeapon(0,"Sword 8",224,224,5);
+		items[2]=new MeleeWeapon(0,"Scimitar",32,224,6);
+		items[3]=new MeleeWeapon(0,"sword 3",64,224,8);
+		items[4]=new MeleeWeapon(0,"Broad sword",96,224,12);
+		items[5]=new MeleeWeapon(0,"Rapier",128,224,15);
+		items[6]=new MeleeWeapon(0,"sword 6",160,224,22);
+		items[7]=new MeleeWeapon(0,"Sword 7",192,224,25);
+		items[8]=new MeleeWeapon(0,"Sword 8",224,224,35);
 		/*
 		items[9]=new MeleeWeapon(0,"Basic Sword",0,224,5);
 		items[10]=new MeleeWeapon(0,"Basic Sword",0,224,5);
