@@ -11,5 +11,10 @@ public class MeleeWeapon extends Item{
 	{
 		System.out.println(damage);
 	}
+	
+	public int getDamage()
+	{
+		return damage;
+	}
 }
 

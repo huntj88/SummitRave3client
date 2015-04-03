@@ -8,8 +8,10 @@ public class InventoryElement extends GUIElement{
 	private boolean clicked=false;
 	private int spot;
 	private int idGrabbed;
+	private int locationGrabbed;
 	private int mouseX,mouseY;
-	private int[] tempInventory = Player.getInventory();
+	private static int[] tempInventory = Player.getInventory();
+	private static int spotDropped;
 	
 	public InventoryElement(Player player) 
 	{
@@ -25,16 +27,17 @@ public class InventoryElement extends GUIElement{
 		for(int space=1;space<5;space++)
 		g.drawLine(x+space*width/5, y, x+space*width/5, y+height);
 		
-		for(int space=1;space<5;space++)
+		for(int space=0;space<5;space++)
 			g.drawLine(x, y+space*width/5, x+width, y+space*width/5);
 		
 		
 		for(int i = 0; i <tempInventory.length;i++)
 		{
-			if(clicked&&i==spot&&mouseX>=x)
+			if(clicked&&i==spot)
 			{
 				if(tempInventory[i]!=0)
 				{
+				locationGrabbed=i;
 				ItemId.DrawItemMouse(g, i, tempInventory[i], game, mouseX, mouseY);
 				idGrabbed=tempInventory[i];
 				}
@@ -59,7 +62,14 @@ public class InventoryElement extends GUIElement{
 	
 	public void checkIfItemGrabbed(int mouseX, int mouseY)
 	{
+		
+		locationGrabbed=-1;
 		idGrabbed=0;
+		spot=-1;
+		
+		if(mouseY>=y)
+		{
+		
 		this.mouseX=mouseX;
 		this.mouseY=mouseY;
 		clicked=true;
@@ -68,7 +78,8 @@ public class InventoryElement extends GUIElement{
 		spot = 5*mouseYSpot+mouseXSpot;
 		
 		
-		System.out.println(spot);
+		//iSystem.out.println(spot);
+		}
 	}
 	
 	public void getMouseWhileDragged(int mouseX, int mouseY)
@@ -83,15 +94,33 @@ public class InventoryElement extends GUIElement{
 		this.mouseY=mouseY;
 		int mouseXSpot=(mouseX-x)/(width/5);
 		int mouseYSpot=(mouseY-y)/(width/5);
-		int spotDropped = 5*mouseYSpot+mouseXSpot;
+		spotDropped = 5*mouseYSpot+mouseXSpot;
 		clicked=false;
 
-		if(spotDropped>=0&&spotDropped<tempInventory.length&&mouseX>=x)
+		if(spot>=0&&spotDropped>=0&&spotDropped<tempInventory.length&&mouseX>=x&&mouseY>y)
 		{
 			int tempSwitch=tempInventory[spotDropped];
 			Player.changeInventory(spotDropped, idGrabbed);
 			Player.changeInventory(spot, tempSwitch);
 		}
+		else if(mouseY<y&&spot>=0)
+		{
+			EquipedElement.giveItem(tempInventory[spot],locationGrabbed);
+			//Player.changeInventory(spot, 0);
+		}
+			
+	}
+	
+	public static void giveItem(int id)
+	{
+		if(ItemId.getItemType(id)==1)
+		{
+			System.out.println(tempInventory[spotDropped]+"!"+tempInventory[spotDropped-1]+"!"+tempInventory[spotDropped+1]);
+		Player.changeequiped(6, tempInventory[spotDropped]);
+		Player.changeInventory(spotDropped, id);
+		Player.setDamage(0);
+		}
+		
 	}
 	
 

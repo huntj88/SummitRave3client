@@ -16,8 +16,10 @@ public class Player{
 	private int playerState = 1;
 	private boolean sprinting =false;
 	private int speed = 2;
+	private static int damage;
 	private int widthOfPlayer=VariablesFinal.SIZE_OF_TILE;
 	private static int[] inventory = new int[25];
+	private static int[] equiped = new int[15];
 	
 	public Player(int x, int y, String userName)
 	{
@@ -145,6 +147,11 @@ public class Player{
 		}
 	}
 	
+	public static void setDamage(int damage)
+	{
+		Player.damage=damage;
+	}
+	
 	public String Hit(int damage)
 	{
 		if (health>0)
@@ -191,6 +198,18 @@ public class Player{
 	{
 		if(location>=0&&location<inventory.length)
 		inventory[location]=itemId;
+	}
+	
+	public static int[] getEquiped()
+	{
+		return equiped;
+	}
+	
+	public static void changeequiped(int location, int itemId)
+	{
+		if(location>=0&&location<equiped.length)
+		equiped[location]=itemId;
+		System.out.println(equiped[location]);
 	}
 	
 	public void move(boolean left,boolean right,boolean up,boolean down, World world)

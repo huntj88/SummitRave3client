@@ -6,6 +6,7 @@ public class GUI {
 	static HealthElement healthBar;
 	static MenuElement menu;
 	static InventoryElement inventory;
+	static EquipedElement equip;
 	
 	public static void makeGUIObjects(Player player)
 	{
@@ -13,6 +14,7 @@ public class GUI {
 		healthBar=new HealthElement(player);
 		menu = new MenuElement();
 		inventory = new InventoryElement(player);
+		equip = new EquipedElement(player,inventory.y);
 		ItemId.buildItemID();
 	}
 	
@@ -33,7 +35,10 @@ public class GUI {
 	public static void drawInventory(Graphics g,GameClient game)
 	{
 		if(inventory.getMenuState())
-		inventory.draw(g,game);
+		{
+			inventory.draw(g,game);
+			equip.draw(g, game);
+		}
 	}
 
 }

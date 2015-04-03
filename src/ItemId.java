@@ -33,6 +33,21 @@ public class ItemId {
 	{
 		items[id].draw(g,spot,game,mouseX,mouseY);
 	}
+	
+	public static int getItemType(int id)
+	{
+		if(items[id] instanceof MeleeWeapon)
+		return 1;
+		
+		return 0;
+	}
+	public static int getWeaponDamage(int id)
+	{
+		if(items[id] instanceof MeleeWeapon)
+			return ((MeleeWeapon) items[id]).getDamage();
+			
+			return 0;
+	}
 
 }
 
