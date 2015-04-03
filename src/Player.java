@@ -161,7 +161,7 @@ public class Player extends PlayerMP{
 		System.out.println(equiped[location]);
 	}
 	
-	public void move(boolean left,boolean right,boolean up,boolean down, World world)
+	public String move(boolean left,boolean right,boolean up,boolean down, World world)
 	{
 		if(left)
 		{
@@ -201,6 +201,8 @@ public class Player extends PlayerMP{
 			if(world.isValidMove(this, 3))
 			setY(getY() + getSpeed());
 		}
+		
+		return "Move "+getUserName()+" "+getX()+" "+getY();
 	}
 
 

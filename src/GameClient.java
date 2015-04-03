@@ -74,7 +74,12 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 
 		world.drawWorld(player.getX(), player.getY(), g, mp,this);
 		
-		player.move(left, right, up, down,world);
+		try {
+			sendInfo(player.move(left, right, up, down,world));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		g.setColor(Color.BLACK);
 		player.drawPlayer(g);
@@ -229,18 +234,18 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
-		String packetCreate="";
+		//String packetCreate="";
 		
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				left=false;
 				right=true;
 				//player.moveRight();
-				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+				//packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				left=true;
 				right=false;
 				//player.moveLeft();
-				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+				//packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 
 		}
 
@@ -248,12 +253,12 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 				up=true;
 				down=false;
 				//player.moveUp();
-				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+				//packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				down=true;
 				up=false;
 				//player.moveDown();
-				packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
+				//packetCreate="Move "+player.getUserName()+" "+player.getX()+" "+player.getY();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -263,12 +268,12 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_A) {
-			packetCreate=player.Hit(10);
+			//packetCreate=player.Hit(10);
 			//System.out.println(player.getHealth());
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_D) {		
-			packetCreate=player.Heal(10);
+			//packetCreate=player.Heal(10);
 			//System.out.println(player.getHealth());
 		}
 		
@@ -278,14 +283,6 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 		
 		if (e.getKeyCode() == KeyEvent.VK_I) {		
 			InventoryElement.switchMenuState();
-		}
-
-		try {
-			if(!packetCreate.equals(""))
-			sendInfo(packetCreate);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 
 		// System.out.println(Variables.directionHeldX+" "+Variables.directionHeldY);
