@@ -74,11 +74,14 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 
 		world.drawWorld(player.getX(), player.getY(), g, mp,this);
 		
+		if(left||right||up||down)
+		{
 		try {
 			sendInfo(player.move(left, right, up, down,world));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
 		}
 		
 		g.setColor(Color.BLACK);
@@ -93,7 +96,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 			// Receive messages one-by-one, forever
 			while (true) {
 				
-				ArrayList<String[]> updates = listenToServer.getServerUpdates();
+				ArrayList<String[]> updates = (ArrayList<String[]>) listenToServer.getServerUpdates().clone();
 				if(updates.size()>0)
 				{
 					for(String[] splitData : updates)
