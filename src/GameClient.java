@@ -96,7 +96,7 @@ public class GameClient extends JPanel implements Runnable, KeyListener,
 			// Receive messages one-by-one, forever
 			while (true) {
 				
-				ArrayList<String[]> updates = (ArrayList<String[]>) listenToServer.getServerUpdates().clone();
+				ArrayList<String[]> updates = new ArrayList<String[]>(listenToServer.getServerUpdates());
 				if(updates.size()>0)
 				{
 					for(String[] splitData : updates)
